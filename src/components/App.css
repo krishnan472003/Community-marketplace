@@ -40,4 +40,15 @@
 .navbar a{
   color: #04AA6D;
 }
+.cards-container {
+  padding: 100px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.card {
+  width: 200px;
+  margin: 10px;
+}
 
