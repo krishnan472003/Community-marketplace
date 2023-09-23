@@ -1,27 +1,27 @@
 import './App.css';
-import Footer from './components/Footer';
-import Navbar from "./components/Navbar";
-import Search from './components/Search';
-import Card from "./components/Card"
-import cards from './data/cards';
-import Grid from "@mui/material/Grid"
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Home from './Screens/Home/Home';
+import Profile from './Screens/Profile/Profile'
+import Signup from './Screens/Signup/Signup';
+import Login from './Screens/Login/Login';
+import Cart from './Screens/Cart/Cart';
+import AddProduct from './Screens/AddProduct/AddProduct';
+import ChangeProfile from './Screens/ChangeProfile/ChangeProfile';
+
 function App() {
   return (
     <div>
-      <Navbar />
-      <Search />
-      <div >
-      <Grid container spacing={2}>
-        {cards.map((card) => {
-          return(
-          <Grid>
-            <Card name={card.name} content={card.content} image={card.image} />
-          </Grid>
-            )
-        })}
-        </Grid>
-      </div>
-      <Footer />
+      <Router>
+        <Routes>
+          <Route path="" element={<Home />} />
+          <Route path="profile" element={<Profile />} />
+          <Route path="signup" element={<Signup />} />
+          <Route path="login" element={<Login />} />
+          <Route path="cart" element={<Cart />} />
+          <Route path="addproduct" element={<AddProduct />} />
+          <Route path="changeProfile" element={<ChangeProfile />} />
+          </Routes>
+      </Router>
     </div>
   );
 }
