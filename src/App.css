@@ -111,3 +111,9 @@
   width: 200px;
   margin: 10px;
 }
+.product-price {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: green;
+  margin: 8px 0;
+}

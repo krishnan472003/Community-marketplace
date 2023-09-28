@@ -18,7 +18,7 @@ export default function Home() {
         cards.map((card) => {
           return(
           <Grid item justify="space-around"  >
-            <Card name={card.name} content={card.content} image={card.image} />
+            <Card name={card.name} content={card.content} image={card.image} price={card.price} />
           </Grid>
             )
         })
