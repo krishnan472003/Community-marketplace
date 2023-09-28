@@ -32,23 +32,28 @@ export default function Signup() {
   };
 
   return (
-    <ThemeProvider theme={defaultTheme}>
+    <ThemeProvider theme={defaultTheme} sx ={{display:"flex",flexDirection:"vertical",alignItem:"space-around"}}>
     <Navbar/>
-    <Card>
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="xs" sx={{padding:4}}>
         <CssBaseline />
         <Box
           sx={{
+            padding:2,
             marginTop: 8,
+            borderRadius: "25",
+            // border: 0.1,
+            // borderColor: "#56B280",
+            backgroundColor: '#fafafa',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
           }}
         >
         
-          <Typography component="h1" variant="h5">
-            Sign in
-          </Typography>
+        <Typography component="h1" variant="h5" style={{fontWeight: 'bold',color:"#56B280"}}>
+  Sign in
+</Typography>
+
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
@@ -78,18 +83,18 @@ export default function Signup() {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 3, mb: 2, backgroundColor: "#56B280"}}
             >
               Sign In
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                <Link href="#" variant="body2" sx={{color:"#56B280"}}>
                   Forgot password?
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="#" variant="body2" sx={{color:"#56B280"}}>
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
@@ -97,7 +102,7 @@ export default function Signup() {
           </Box>
         </Box>
       </Container>
-        </Card>
+    
       <Footer />
     </ThemeProvider>
   );
