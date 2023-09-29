@@ -93,6 +93,7 @@ function AddProduct() {
   <Buttons
   
     variant="contained"
+    text="Submit"
   />
 
 
