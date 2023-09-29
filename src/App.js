@@ -6,6 +6,7 @@ import Signup from './Screens/Signup/Signup';
 import Login from './Screens/Login/Login';
 import Cart from './Screens/Cart/Cart';
 import AddProduct from './Screens/AddProduct/AddProduct';
+import BuyProduct from './Screens/BuyProduct/BuyProduct';
 import ChangeProfile from './Screens/ChangeProfile/ChangeProfile';
 import { Grid } from '@mui/material';
 
@@ -21,6 +22,7 @@ function App() {
           <Route path="cart" element={<Cart />} />
           <Route path="addproduct" element={<AddProduct />} />
           <Route path="changeProfile" element={<ChangeProfile />} />
+          <Route path="buyproduct" element={<BuyProduct />} />
           </Routes>
       </Router>
     </div>
