@@ -76,6 +76,23 @@ function Cart() {
       <Grid>
           <hr />
       </Grid>
+      </Box>
+
+      <Box sx={{ flexGrow: 1}} marginBottom={2}>
+      <Grid container spacing={2}>
+        <Grid item xs={1.3}>
+          <h5>Sub-Total:</h5>
+        </Grid>
+        <Grid item xs={1}>
+          <h5>$10.5</h5>
+        </Grid>
+        <Grid item xs>
+          <Buttons
+            variant="contained"
+            text = "CheckOut"
+          />
+        </Grid>
+      </Grid>
     </Box>
     <Footer/>
     </Paper>
