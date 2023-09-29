@@ -1,26 +1,64 @@
-import React from 'react';
+import * as React from 'react';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import Button from '@mui/material/Button';
 
-export default function Navbar(){
 
-
+function Navbar() {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <a className="navbar-brand fw-bold p-2" href="#">RENT NOW</a>
-
-      <div className="collapse navbar-collapse d-flex justify-content-end" id="navbarSupportedContent">
-        <ul className="navbar-nav mr-auto">
-          <li className="nav-item">
-            <a className="nav-link fw-bold" href="#">SELL</a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link text-dark" href="#"><i className="fa-regular fa-user"></i></a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link text-dark" href="#"><i className="fa-solid fa-cart-shopping"></i></a>
-          </li>
-        </ul>
-      </div>
-    </nav>
+    <AppBar position="static" color=''>
+      <Container maxWidth="xl">
+        <Toolbar disableGutters>
+          <Typography
+            variant="h6"
+            noWrap
+            component="a"
+            href="/"
+            sx={{
+              mr: 2,
+              display: { xs: 'none', md: 'flex' },
+              fontFamily: 'monospace',
+              fontWeight: 700,
+              letterSpacing: '.2rem',
+              color: '#04AA6D',
+              textDecoration: 'none',
+            }}
+          >
+            RENT NOW
+          </Typography>
+          <Box sx={{ flexGrow: 1, justifyContent:'flex-end',display: { xs: 'none', md: 'flex' }}}>
+              <Button
+                onClick=""
+                sx={{ my: 1, color: 'white', display: 'block',backgroundColor:'#04AA6D' }}
+              >
+                Sell
+              </Button>
+              <Button
+                onClick=""
+                sx={{ my: 1, color: 'black', display: 'block'}}
+              >
+                <i className="fa-regular fa-user"></i>
+              </Button>
+              <Button
+                onClick=""
+                sx={{ my: 1, color: 'black', display: 'block'}}
+              >
+                <i className="fa-solid fa-cart-shopping"></i>
+              </Button>
+          </Box>
+        </Toolbar>
+      </Container>
+    </AppBar>
   );
-
 }
+export default Navbar;
+
+
+
+
+
+
+
