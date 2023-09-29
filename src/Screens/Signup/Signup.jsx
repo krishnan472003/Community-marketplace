@@ -11,9 +11,9 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Card } from '@mui/material';
 import Navbar from "../../components/Navbar"
 import Footer from "../../components/Footer"
+import axios from 'axios';
 
 
 
@@ -22,33 +22,40 @@ import Footer from "../../components/Footer"
 const defaultTheme = createTheme();
 
 export default function Signup() {
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
+    let data= new FormData(event.currentTarget);
+    data = {
       email: data.get('email'),
       password: data.get('password'),
-    });
+    }
+    let fetchedData = await axios.post("http://localhost:5000/api/auth/signup",data)
+    console.log(fetchedData)
   };
 
   return (
-    <ThemeProvider theme={defaultTheme}>
+    <ThemeProvider theme={defaultTheme} sx ={{display:"flex",flexDirection:"vertical",alignItem:"space-around"}}>
     <Navbar/>
-    <Card>
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="xs" sx={{padding:4}}>
         <CssBaseline />
         <Box
           sx={{
+            padding:2,
             marginTop: 8,
+            borderRadius: "25",
+            // border: 0.1,
+            // borderColor: "#56B280",
+            backgroundColor: '#fafafa',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
           }}
         >
         
-          <Typography component="h1" variant="h5">
-            Sign in
-          </Typography>
+        <Typography component="h1" variant="h5" style={{fontWeight: 'bold',color:"#56B280"}}>
+  Sign up
+</Typography>
+
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
@@ -70,35 +77,28 @@ export default function Signup() {
               id="password"
               autoComplete="current-password"
             />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
+
             <Button
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 3, mb: 2, backgroundColor: "#56B280"}}
             >
               Sign In
             </Button>
             <Grid container>
             
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
+              
               <Grid item>
-                <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
+                <Link href="#" variant="body2" sx={{color:"#56B280"}}>
+                  {"Already have an account? Login"}
                 </Link>
               </Grid>
             </Grid>
           </Box>
         </Box>
       </Container>
-        </Card>
+    
       <Footer />
     </ThemeProvider>
   );
