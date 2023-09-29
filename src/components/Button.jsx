@@ -6,7 +6,6 @@ export default function Buttons(props) {
   return (
     <Stack spacing={2} direction="row">
       <Button variant={props.variant}>Text</Button>
-      
     </Stack>
   );
 }
