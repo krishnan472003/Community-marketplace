@@ -37,12 +37,16 @@ function Navbar() {
                 Sell
               </Button>
               <Button
+                component="a"
+                href="/signup"
                 onClick=""
                 sx={{ my: 1, color: 'black', display: 'block'}}
               >
                 <i className="fa-regular fa-user"></i>
               </Button>
               <Button
+                component="a"
+                href="/cart"
                 onClick=""
                 sx={{ my: 1, color: 'black', display: 'block'}}
               >

@@ -29,16 +29,16 @@ import SelectCity from '../../components/SelectCity';
   return (
     <Paper>
     <Navbar/>
-    <Grid container direction='column' margin={3}>
+    <Grid container direction='column' marginTop={5} alignItems='center'>
     <h3>Hello, Name</h3><br/>
     <h3>Your Current Balance:</h3><br/><br/>
     </Grid>
 
-    <Grid container margin={3}>
+    <Grid container marginTop={5}>
     <h5>Shipping Address</h5>
     </Grid>
     
-    <Box sx={{flexGrow:1}} margin={3}>
+    <Box sx={{flexGrow:1}}>
     
     <Grid container>
       <Grid item xs>
@@ -80,7 +80,7 @@ import SelectCity from '../../components/SelectCity';
       </Grid>
     </Grid>
 
-    <Grid container justifyContent='flex-end'>
+    <Grid container justifyContent='flex-end' marginBottom={2}>
       <Buttons
         variant="contained"
         text="Save"
