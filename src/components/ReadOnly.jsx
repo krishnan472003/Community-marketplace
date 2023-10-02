@@ -2,7 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
-export default function Input(props) {
+export default function Read(props) {
   return (
     <Box
       component="form"
@@ -13,17 +13,22 @@ export default function Input(props) {
       autoComplete="off"
     >
       <div>
-        <TextField
-          required
-          id="outlined-required"
+      <TextField
+         
+
+          id="standard-read-only-input"
           label={props.label}
-          multiline
-          defaultValue=" "
-          
-          
+          defaultValue={props.default}
+          InputProps={{
+            readOnly: true,
+          }}
+          variant="standard"
         />
        
       </div>
     </Box>
   );
 }
+
+
+
