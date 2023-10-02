@@ -16,7 +16,7 @@ function App() {
     <div>
       <Router>
         <Routes>
-          <Route path="" element={<Home />} />
+          <Route path="/:email" element={<Home />} />
           <Route path="profile" element={<Profile />} />
           <Route path="signup" element={<Signup />} />
           <Route path="login" element={<Login />} />
@@ -25,6 +25,7 @@ function App() {
           <Route path="changeProfile" element={<ChangeProfile />} />
           <Route path="buyproduct" element={<BuyProduct />} />
           <Route path="fianance" element={<Fianance />} />
+          <Route path="changeprofile" element={<ChangeProfile />} />
           </Routes>
       </Router>
     </div>

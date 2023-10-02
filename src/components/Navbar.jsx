@@ -16,7 +16,7 @@ function Navbar() {
             variant="h6"
             noWrap
             component="a"
-            href="/"
+            href="/home"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -41,12 +41,16 @@ function Navbar() {
               </Button>
               
               <Button
+                component="a"
+                href="/signup"
                 onClick=""
                 sx={{ my: 1, color: 'black', display: 'block'}}
               >
                 <i className="fa-regular fa-user"></i>
               </Button>
               <Button
+                component="a"
+                href="/cart"
                 onClick=""
                 sx={{ my: 1, color: 'black', display: 'block'}}
               >
