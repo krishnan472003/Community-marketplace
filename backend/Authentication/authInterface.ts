@@ -6,7 +6,6 @@ export interface LoginData {
 export interface SignupData {
     email?: string;
     name?: string;
-    age?: number;
     password?: string;
     accessToken?:string;
   }

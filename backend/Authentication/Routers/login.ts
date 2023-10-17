@@ -23,7 +23,7 @@ export const Login = () => {
     console.log("connected");
     let queryData = await UserModel.findOne({ email: data.email });
     if (!queryData) {
-      res.status(200).json({ error: "Wrong credentials" });
+      res.status(200).json({ error: "Wrong credentials",status:400 });
       return;
     }
 
@@ -35,13 +35,13 @@ export const Login = () => {
       queryData.accessToken = jwtToken;
       await queryData.save();
       if (jwtToken == null) {
-        res.status(400).json({ error: "Wrong credentials" });
+        res.status(200).json({ error: "Wrong credentials" ,status:400 });
       }
        else {
-        res.status(200).json({ token: jwtToken });
+        res.status(200).json({ token: jwtToken ,status:200 });
       }
     } else {
-      res.status(200).json({ message: "wrong mail id" });
+      res.status(200).json({ message: "wrong mail id", status:400 });
     }
   });
 

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
+import axios from 'axios';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
@@ -13,7 +13,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Navbar from "../../components/Navbar"
 import Footer from "../../components/Footer"
-
+import { useNavigate } from 'react-router-dom';
 
 
 // TODO remove, this demo shouldn't need to reset the theme.
@@ -21,13 +21,20 @@ import Footer from "../../components/Footer"
 const defaultTheme = createTheme();
 
 export default function Login() {
-  const handleSubmit = (event) => {
+  const navigate = useNavigate();
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
+    const finalData = {
       email: data.get('email'),
       password: data.get('password'),
-    });
+    }
+    let fetchedData = await axios.post("http://localhost:5000/api/auth/signup",finalData)
+    if(fetchedData.status === 200){
+        localStorage.setItem("token",fetchedData.token)
+        navigate(`/home/${data.email}`)
+    }
+    
   };
 
   return (

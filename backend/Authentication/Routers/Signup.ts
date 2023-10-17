@@ -7,6 +7,7 @@ import { UserModel } from "../Model/SignupSchema";
 let data: SignupData;
 //api endpoint
 export const Signup = () => {
+
   const router = Router();
   console.log("In Signup");
   router.post("/signup", async (req: Request, res: Response) => {

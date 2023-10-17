@@ -8,21 +8,21 @@ import Cart from './Screens/Cart/Cart';
 import AddProduct from './Screens/AddProduct/AddProduct';
 import BuyProduct from './Screens/BuyProduct/BuyProduct';
 import ChangeProfile from './Screens/ChangeProfile/ChangeProfile';
-import { Grid } from '@mui/material';
+
 
 function App() {
   return (
     <div>
       <Router>
         <Routes>
-          <Route path="/:email" element={<Home />} />
-          <Route path="profile" element={<Profile />} />
-          <Route path="signup" element={<Signup />} />
-          <Route path="login" element={<Login />} />
-          <Route path="cart" element={<Cart />} />
-          <Route path="addproduct" element={<AddProduct />} />
-          <Route path="changeProfile" element={<ChangeProfile />} />
-          <Route path="buyproduct" element={<BuyProduct />} />
+          <Route path="/*" element={<Home />} />{/* done */}
+          <Route path="/signup" element={<Signup />} />{/* done */}
+          <Route path="/login" element={<Login />} />{/* done */}
+          <Route path="/home/:id/cart" element={<Cart />} />{/* done */}
+          <Route path="/home/:id/addproduct" element={<AddProduct />} />{/* done */}
+          <Route path="/home/:id/profile" element={<Profile />} />
+          <Route path="/home/:id/changeProfile" element={<ChangeProfile />} />
+          <Route path="/home/:id/buyproduct" element={<BuyProduct />} />{/* done */}
           </Routes>
       </Router>
     </div>
