@@ -43,7 +43,7 @@ function Navbar() {
             variant="h6"
             noWrap
             component="a"
-            href="/"
+            href="/home"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -55,7 +55,9 @@ function Navbar() {
             }}
           >
             RENT NOW
+            
           </Typography>
+          
           <Box sx={{ flexGrow: 1, justifyContent:'flex-end',display: { xs: 'none', md: 'flex' }}}>
             {loggedIn=== true?
             <>
@@ -65,7 +67,10 @@ function Navbar() {
               >
                 Logout
               </Button>
+              
               <Button
+                component="a"
+                href="/signup"
                 onClick=""
                 sx={{ my: 1, color: 'black', display: 'block'}}
               >
