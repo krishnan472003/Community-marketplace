@@ -7,6 +7,7 @@ const ProductSchema = new mongoose.Schema<ProductData>({
         price: { type: Number, required: true },
         description: { type: String, required: true },
         soldOut: { type: Boolean, required: true },
+        
       });
 
 export const ProductModel = mongoose.model<ProductData>('product', ProductSchema);

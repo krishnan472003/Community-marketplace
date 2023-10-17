@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { LoginData } from "../authInterface";
 // import { mongodb } from "../../db";
-import { UserModel } from "../Model/SignupSchema";
+import { AuthModel } from "../Model/SignupSchema";
 import { compare } from 'bcrypt';
 
 
@@ -15,7 +15,7 @@ export const Logout = () => {
     const token = req.body.token;
 
     try {
-      const updatedUser = await UserModel.findOneAndUpdate(
+      const updatedUser = await AuthModel.findOneAndUpdate(
         { accessToken: token },
         { $unset: { accessToken: "" } },
         { new: true }

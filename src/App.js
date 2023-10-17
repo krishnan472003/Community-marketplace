@@ -25,7 +25,7 @@ function App() {
           <Route path="addproduct" element={<AddProduct />} />
           <Route path="changeProfile" element={<ChangeProfile />} />
           <Route path="buyproduct" element={<BuyProduct />} />
-          <Route path="fianance" element={<Fianance />} />
+          <Route path="finance" element={<Fianance />} />
           <Route path="changeprofile" element={<ChangeProfile />} />
           </Routes>
       </Router>

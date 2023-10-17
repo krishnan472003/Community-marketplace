@@ -1,11 +1,11 @@
 import express, { Router } from "express"
-import { UserModel } from "../Model/SignupSchema"
+import { AuthModel } from "../Model/SignupSchema"
 
 export const Token = ()=>{
     const router = Router()
     router.post("/token",async (req,res)=>{
     console.log("token")
-    await UserModel.findOne({ accessToken: req.body.token})
+    await AuthModel.findOne({ accessToken: req.body.token})
         .then((data)=>{
             console.log(data)
             if(data === null){
