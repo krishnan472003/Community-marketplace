@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useRef } from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
@@ -9,6 +9,8 @@ import Input from "../../components/Input"
 import TextFields from "../../components/TextField"
 import AddImg from "../../components/AddImg"
 import Buttons from "../../components/Button"
+
+import FileUploader from '../../components/FileUploader';
 
 
 
@@ -39,9 +41,9 @@ function AddProduct() {
   <h4>Product Details:</h4>
     <Input
       label="Name"
-    />
+    /> 
     <Input
-      label="Size"
+      label="Quantity"
     />
     <Input
       label="Amount"
@@ -67,9 +69,9 @@ function AddProduct() {
 
 
 <Grid item xs={3} >
+<FileUploader />
 
-<AddImg  />
-<h4 style={divStyle} >Choose File</h4>
+
   
 </Grid>
 
@@ -106,5 +108,6 @@ function AddProduct() {
  </Paper>
   )
 }
+
 
 export default AddProduct

@@ -9,7 +9,9 @@ export const Sell = () =>{
             name:req.body.name,
             price: req.body.price,
             description: req.body.description,
-            soldOut: false
+            soldOut: false,
+            image:req.body.image,
+            quantity:req.body.quantity 
         }
         const newProduct = await new ProductModel(data);
         console.log(newProduct)

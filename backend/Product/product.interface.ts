@@ -3,4 +3,6 @@ export interface ProductData{
     price: String;
     description: String;
     soldOut: boolean;
+    image:String;
+    quantity: String;
 }   
