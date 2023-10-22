@@ -3,7 +3,7 @@ import Footer from "../../components/Footer"
 import Navbar from "../../components/Navbar"
 import Search from "../../components/Search"
 import Card from "../../components/Card"
-import cards from '../../data/cards';
+import {cards} from '../../data/cards';
 import Grid from "@mui/material/Grid"
 import { Paper } from '@mui/material'
 

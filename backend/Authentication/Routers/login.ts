@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { LoginData } from "../authInterface";
 // import { mongodb } from "../../db";
-import { UserModel } from "../Model/SignupSchema";
+import { AuthModel } from "../Model/SignupSchema";
 import { compare } from "bcrypt";
 import jwt from "jsonwebtoken";
 
@@ -21,7 +21,7 @@ export const Login = () => {
     let jwtToken: string;
 
     console.log("connected");
-    let queryData = await UserModel.findOne({ email: data.email });
+    let queryData = await AuthModel.findOne({ email: data.email });
     if (!queryData) {
       res.status(200).json({ error: "Wrong credentials",status:400 });
       return;
@@ -31,7 +31,7 @@ export const Login = () => {
 
     if (isPasswordValid) {
       jwtToken = await jwt.sign(JSON.stringify(data), process.env.TOKEN_SECRET);
-      queryData = await UserModel.findOne({ email: data.email });
+      queryData = await AuthModel.findOne({ email: data.email });
       queryData.accessToken = jwtToken;
       await queryData.save();
       if (jwtToken == null) {

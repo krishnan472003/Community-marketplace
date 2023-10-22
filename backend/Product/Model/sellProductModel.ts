@@ -3,12 +3,17 @@ import { ProductData } from "../product.interface";
 // import {SignupData} from "../Routers/SignupEndpoint"
 
 const ProductSchema = new mongoose.Schema<ProductData>({
-        name: { type: String, required: true },
-        price: { type: Number, required: true },
-        description: { type: String, required: true },
-        soldOut: { type: Boolean, required: true },
-        image:{ type: String, required: true },
-        quantity:{ type: Number, required: true }, 
+        name: { type: String,  },
+        amount: { type: Number,  },
+        description: { type: String,  },
+        soldOut: { type: Boolean,  },
+        image:{ type: String,  },
+        quantity:{ type: Number,  }, 
+        address: { type: String,  },
+        postalCode:{ type: Number,  }, 
+        contactNumber:{ type: Number,  }, 
+
+
         
       });
 

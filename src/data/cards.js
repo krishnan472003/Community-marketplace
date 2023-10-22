@@ -1,5 +1,4 @@
-
-const cards = [
+export const cards =  [
     {
       key: 1,
       image:"./imgs/sofa.webp",
@@ -47,9 +46,9 @@ const cards = [
         content:
           "What's the difference between hardware and software? You can hit your hardware with a hammer, but you can only curse at your software."
       }
-  ];
+  ]
   
-  export default cards;
+
   
 
 

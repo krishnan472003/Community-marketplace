@@ -8,5 +8,5 @@ const SignupSchema = new mongoose.Schema<SignupData>({
         accessToken: { type: String, required: true },
       });
 
-export const UserModel = mongoose.model<SignupData>('user', SignupSchema);
+export const AuthModel = mongoose.model<SignupData>('auth', SignupSchema);
       
