@@ -11,7 +11,7 @@ const ItemSchema = new mongoose.Schema<Item>({
 
 const OrderItemSchema = new mongoose.Schema<OrderItem>({
   items:[ItemSchema],
-  total:Number,
+  total:Number, 
 })
 const OrderSchema = new mongoose.Schema<OrderData>({
         items:[OrderItemSchema],

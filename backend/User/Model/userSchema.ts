@@ -14,7 +14,7 @@ const CartSchema = new mongoose.Schema<Cart>({
 
 })
 const UserSchema = new mongoose.Schema<UserData>({
-        uId: { type: String },
+        uId: { type: String },  // dont touch
         fName: { type: String },
         lName: { type: String },
         address: { type: String },
@@ -22,9 +22,9 @@ const UserSchema = new mongoose.Schema<UserData>({
         state:{ type: String },
         postalCode:{ type: Number },
         balance:{ type: Number },
-        cart:{ type: CartSchema },
+        cart:{ type: CartSchema }, // dont touch
 
       });
 
-export const UserModel = mongoose.model<UserData>('userr', UserSchema);
+export const UserModel = mongoose.model<UserData>('user', UserSchema);
       

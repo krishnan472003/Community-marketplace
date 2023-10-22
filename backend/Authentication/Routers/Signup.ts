@@ -23,7 +23,9 @@ export const Signup = () => {
           process.env.TOKEN_SECRET
         );
         const newData = new AuthModel(data);
+
         await newData.save().then((data) => {
+          console.log(data)
           console.log(`user with email ${data.email} is added`);
           res.status(200).json({ token: data.accessToken,status:200 });
         });
