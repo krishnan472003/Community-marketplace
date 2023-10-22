@@ -70,10 +70,10 @@ function Fianance()
      </Grid>
      <Grid container spacing={2} marginLeft={0}  marginTop={2} >
      <Grid item xs={6}>
-     <Button onClick={addFunds} variant="contained">Credit</Button>
+     <Button onClick={addFunds} variant="contained" style={{backgroundColor:'#04AA6D'}}>Credit</Button>
      </Grid>
      <Grid item xs={3} >
-     <Button id="" variant="contained" onClick={subFunds}>Withdraw</Button>
+     <Button id="" variant="contained" onClick={subFunds} style={{backgroundColor:'#04AA6D'}}>Withdraw</Button>
      </Grid>
 
      

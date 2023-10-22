@@ -6,6 +6,7 @@ import { OrderModule } from "./Order/order.router";
 import cors from 'cors'
 import { mongodb } from "./db";
 import { Product } from "./Product/product.router";
+import bodyParser from "body-parser";
 
 
 
@@ -18,7 +19,8 @@ app.use(cors({
 const port: number = Number(process.env.PORT);
   mongodb()
 
- app.use(express.json()) 
+app.use(bodyParser.json({ limit: '10mb' }));
+app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
  app.use("/api",AuthModule())
  app.use("/api",Product())
  app.use("/api",UserModule())

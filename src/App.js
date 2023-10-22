@@ -8,7 +8,6 @@ import Cart from './Screens/Cart/Cart';
 import AddProduct from './Screens/AddProduct/AddProduct';
 import BuyProduct from './Screens/BuyProduct/BuyProduct';
 import ChangeProfile from './Screens/ChangeProfile/ChangeProfile';
-
 import Fianance from './Screens/Fianance/Fianance';
 import { Grid } from '@mui/material';
 
@@ -17,7 +16,7 @@ function App() {
     <div>
       <Router>
         <Routes>
-          <Route path="/:email" element={<Home />} />
+          <Route path="" element={<Home />} />
           <Route path="profile" element={<Profile />} />
           <Route path="signup" element={<Signup />} />
           <Route path="login" element={<Login />} />
