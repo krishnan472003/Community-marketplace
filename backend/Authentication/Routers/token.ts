@@ -1,6 +1,7 @@
 import express, { Router } from "express"
 import { AuthModel } from "../Model/SignupSchema"
 
+// now it is useless
 export const Token = ()=>{
     const router = Router()
     router.post("/token",async (req,res)=>{

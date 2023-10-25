@@ -1,0 +1,9 @@
+{
+    "web":{"client_id":"836585638032-7jl7v8tjpa5tgu4nsmlgrp042bpuh40d.apps.googleusercontent.com","project_id":"still-function-402819",
+    "auth_uri":"https://accounts.google.com/o/oauth2/auth",
+    "token_uri":"https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs","client_secret":"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",
+    "redirect_uris":["http://localhost:5000/api"],
+    "javascript_origins":["http://localhost:3000"]
+}
+}

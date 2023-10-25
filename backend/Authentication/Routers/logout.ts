@@ -1,11 +1,7 @@
 import { Router } from "express";
-import { LoginData } from "../authInterface";
+
 // import { mongodb } from "../../db";
 import { AuthModel } from "../Model/SignupSchema";
-import { compare } from 'bcrypt';
-
-
-let data: LoginData;
 
 //api endpoint
 export const Logout = () => {
@@ -13,6 +9,8 @@ export const Logout = () => {
   
   router.post("/logout", async (req, res) => {
     const token = req.body.token;
+    req.session = null;
+    (req as any).logout();
 
     try {
       const updatedUser = await AuthModel.findOneAndUpdate(

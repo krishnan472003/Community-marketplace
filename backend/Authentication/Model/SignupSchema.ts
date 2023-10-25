@@ -1,12 +1,15 @@
-import mongoose, { Model } from "mongoose";
+import mongoose from "mongoose";
 import { SignupData } from "../authInterface";
 // import {SignupData} from "../Routers/SignupEndpoint"
 
-const SignupSchema = new mongoose.Schema<SignupData>({
-        email: { type: String, required: true },
-        password: { type: String, required: true },    
+ 
+const SignupSchema = new mongoose.Schema<any>({
+        uId :{ type:String, required: true},
+        email: { type: String},
+        password: { type: String},    
         accessToken: { type: String, required: true },
       });
-
-export const AuthModel = mongoose.model<SignupData>('auth', SignupSchema);
+      // SignupSchema.plugin(passportLocalMongoose);
+      // SignupSchema.plugin(findOrCreate);
+export const AuthModel = mongoose.model<any>('auth', SignupSchema);
       

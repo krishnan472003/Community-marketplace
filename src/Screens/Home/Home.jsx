@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Footer from "../../components/Footer"
 import Navbar from "../../components/Navbar"
 import Search from "../../components/Search"
@@ -7,7 +7,23 @@ import {cards} from '../../data/cards';
 import Grid from "@mui/material/Grid"
 import { Paper } from '@mui/material'
 
+
 export default function Home() {
+  useEffect(( ) => {
+
+    const urlSearchString = window.location.search;
+    const params = new URLSearchParams(urlSearchString);
+    const accessToken = params.get('accessToken')
+    const uId = params.get('uId')
+    if(accessToken){
+      localStorage.setItem('token',accessToken)
+      localStorage.setItem('uId',uId)
+      console.log("====")
+    }
+
+
+   
+     }, [ ]);
   return (
     <div>
       <Navbar />
