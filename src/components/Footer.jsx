@@ -17,7 +17,7 @@ export default function Footer() {
               letterSpacing: '.2rem',
               color: '#04AA6D',
               textDecoration: 'none',
-            }}>RENT NOW</h4>
+            }}>SHOPWISE</h4>
       
       <p style={{ color: '#04AA6D'}}>Your new Renting Solution is Here</p>
       </Grid>

@@ -54,7 +54,7 @@ function Navbar() {
               textDecoration: 'none',
             }}
           >
-            RENT NOW
+            SHOPWISE
             
           </Typography>
           

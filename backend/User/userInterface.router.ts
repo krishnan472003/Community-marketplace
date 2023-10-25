@@ -1,13 +1,14 @@
 export interface UserData{
-    uId:String;
-    fName:String;
-    lName:String;
-    address:String;
-    city:String;
-    state:String;
-    postalCode:number;
-    balance:number;
-    cart: Cart;
+    uId?:String;
+    fName?:String;
+    lName?:String;
+    address?:String;
+    city?:String;
+    state?:String;
+    postalCode?:number;
+    contactNumber?:number;
+    balance?:number;
+    cart?: Cart;
 }
 
 export interface CartItem{

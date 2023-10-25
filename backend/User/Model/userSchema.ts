@@ -21,6 +21,7 @@ const UserSchema = new mongoose.Schema<UserData>({
         city:{ type: String },
         state:{ type: String },
         postalCode:{ type: Number },
+        contactNumber:{ type: Number },
         balance:{ type: Number },
         cart:{ type: CartSchema }, // dont touch
 
