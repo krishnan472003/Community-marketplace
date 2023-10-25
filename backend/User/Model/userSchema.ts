@@ -4,7 +4,7 @@ import { Cart, CartItem, UserData } from "../userInterface.router";
 // import {SignupData} from "../Routers/SignupEndpoint"
 const CartItemSchema = new mongoose.Schema<CartItem>({
   name:String,
-  pid:String,
+  pId:String,
   quantity:Number,
   price:Number,
 })

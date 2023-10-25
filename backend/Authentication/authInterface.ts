@@ -4,6 +4,8 @@ export interface LoginData {
   }
 
 export interface SignupData {
+
+    uId?: string;
     email?: string;
     name?: string;
     password?: string;

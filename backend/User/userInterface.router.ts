@@ -13,7 +13,7 @@ export interface UserData{
 
 export interface CartItem{
     name:String;
-    pid:String;
+    pId:String;
     quantity:number;
     price:number;//single item price
 

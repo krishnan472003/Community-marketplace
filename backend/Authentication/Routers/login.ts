@@ -33,12 +33,12 @@ export const Login = () => {
       jwtToken = await jwt.sign(JSON.stringify(data), process.env.TOKEN_SECRET);
       queryData = await AuthModel.findOne({ email: data.email });
       queryData.accessToken = jwtToken;
-      await queryData.save();
+      const updated = await queryData.save();
       if (jwtToken == null) {
         res.status(200).json({ error: "Wrong credentials" ,status:400 });
       }
        else {
-        res.status(200).json({ token: jwtToken ,status:200 });
+        res.status(200).json({ token: jwtToken ,status:200, uId :updated.uId});
       }
     } else {
       res.status(200).json({ message: "wrong mail id", status:400 });

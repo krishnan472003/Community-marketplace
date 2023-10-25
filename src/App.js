@@ -9,14 +9,13 @@ import AddProduct from './Screens/AddProduct/AddProduct';
 import BuyProduct from './Screens/BuyProduct/BuyProduct';
 import ChangeProfile from './Screens/ChangeProfile/ChangeProfile';
 import Fianance from './Screens/Fianance/Fianance';
-import { Grid } from '@mui/material';
 
 function App() {
   return (
     <div>
       <Router>
         <Routes>
-          <Route path="" element={<Home />} />
+        <Route  path="" element={<Home/>} />
           <Route path="profile" element={<Profile />} />
           <Route path="signup" element={<Signup />} />
           <Route path="login" element={<Login />} />

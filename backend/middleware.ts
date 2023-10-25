@@ -1,7 +1,4 @@
 // verifyTokenMiddleware.js
-import express from 'express';
-
-
 import { AuthModel } from "./Authentication/Model/SignupSchema";
 
 
@@ -25,4 +22,3 @@ export const verifyTokenMiddleware = async (req, res, next) => {
   }
 };
 
-    

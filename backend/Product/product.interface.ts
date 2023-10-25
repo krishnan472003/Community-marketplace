@@ -1,11 +1,12 @@
 export interface ProductData{
-    name: String;
-    amount: String;
-    description: String;
+    pId: string;
+    name: string;
+    amount: number;
+    description: string;
     soldOut: boolean;
-    image:String;
-    quantity: String;
-    address:String,
-    postalCode:Number,
-    contactNumber:Number
+    image:string;
+    quantity: number;
+    address:string;
+    postalCode:number;
+    contactNumber:number;
 }   

@@ -5,6 +5,7 @@ import { getUserProfile } from "./Router/getProfile";
 
 
 
+import { updateCart } from "./Router/updateCart";
 
 
 
@@ -14,5 +15,6 @@ export const UserModule = ()=>{
         router.use("/user",change());
         router.use("/user",getUserProfile());
         
+        router.use("/user",updateCart());
     return router
 }

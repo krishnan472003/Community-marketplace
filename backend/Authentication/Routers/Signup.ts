@@ -3,6 +3,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { SignupData } from "../authInterface";
 import { AuthModel } from "../Model/SignupSchema";
+import moment from "moment";
 
 let data: SignupData;
 //api endpoint
@@ -22,12 +23,12 @@ export const Signup = () => {
           JSON.stringify(data),
           process.env.TOKEN_SECRET
         );
-        const newData = new AuthModel(data);
+        const newData = new AuthModel({...data, uId: String(moment().unix())});
 
         await newData.save().then((data) => {
           console.log(data)
-          console.log(`user with email ${data.email} is added`);
-          res.status(200).json({ token: data.accessToken,status:200 });
+          console.log(`user with email ${data.email} is added =====`);
+          res.json({ token: data.accessToken,status:200,uId: data.uId })
         });
       } else {
         res.status(200).json({ message: "account exists",status:  400 });
