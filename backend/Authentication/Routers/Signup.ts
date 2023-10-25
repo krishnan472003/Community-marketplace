@@ -27,9 +27,8 @@ export const Signup = () => {
 
         await newData.save().then((data) => {
           console.log(data)
-          console.log(`user with email ${data.email} is added`);
-          
-          res.status(200).json({ token: data.accessToken,status:200,uId: data.uId })
+          console.log(`user with email ${data.email} is added =====`);
+          res.json({ token: data.accessToken,status:200,uId: data.uId })
         });
       } else {
         res.status(200).json({ message: "account exists",status:  400 });

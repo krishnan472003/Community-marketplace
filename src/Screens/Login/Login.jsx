@@ -32,7 +32,9 @@ export default function Login() {
     let fetchedData = await axios.post("http://localhost:5000/api/auth/signup", finalData)
     if (fetchedData.status === 200) {
       localStorage.setItem("token", fetchedData.token)
-      navigate(`/home/${data.email}`)
+      localStorage.setItem("uId", fetchedData.token)
+
+      navigate(`/`)
     }
 
   };

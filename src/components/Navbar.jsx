@@ -12,29 +12,36 @@ import { Link } from 'react-router-dom';
 
 function Navbar() {
   const [loggedIn, setLoggedIn] = useState(false);
-  const [logoutFlag, setLogoutFlag] = useState(false); // New piece of state
 
   const handleLogout = async () => {
-    let token = localStorage.getItem('token');
+    let token =await localStorage.getItem('token');
+    let uId = await localStorage.getItem('uId');
+
     let data = {
-      token: token
-    }
-    let fetchedData = await axios.post("http://localhost:5000/api/auth/token", data)
-    console.log(fetchedData)
-    if (fetchedData.status === 200) {
-      setLoggedIn(true);
-    } else {
-      setLoggedIn(false);
+      token: token,
+      uId : uId
     }
     localStorage.clear();
-    setLogoutFlag(true); // Set the logoutFlag to trigger re-render
+    setLoggedIn(false);
+    let fetchedData = await axios.post("http://localhost:5000/api/auth/logout", data)
+    if(fetchedData.status !==200){
+      console.log(fetchedData)
+      setLoggedIn(true)
+      localStorage.setItem("token",token);
+      localStorage.setItem("uId",uId);
+    }
   }
+  useEffect(()=>{
+  const uId = localStorage.getItem('uId');
+  if(uId){
+    setLoggedIn(true)
 
-  useEffect(() => {
-    let token = localStorage.getItem('token');
-    setLoggedIn(token === null ? false : true);
-    console.log(token);
-  }, [logoutFlag]);
+  }
+  else{
+    setLoggedIn(false)
+  }
+  },[])
+
   return (
     <AppBar position="static" color=''>
       <Container maxWidth="xl">

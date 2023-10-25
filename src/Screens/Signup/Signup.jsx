@@ -31,17 +31,21 @@ export default function Signup() {
       password: data.get('password'),
     }
     let fetchedData = await axios.post("http://localhost:5000/api/auth/signup",data)
-
+    console.log(fetchedData)
     fetchedData = fetchedData.data
+    console.log(fetchedData)
+
     if(fetchedData.status === 200 ){
       localStorage.setItem('token',fetchedData.token)
+      localStorage.setItem('uId',fetchedData.uId)
       // navigate(`/home/${data.email}`)
     }
+    
     console.log(fetchedData.data)
   };
 
   return (
-    <ThemeProvider theme={defaultTheme} sx ={{display:"flex",flexDirection:"vertical",alignItem:"space-around"}}>
+    <ThemeProvider theme={defaultTheme}>
     <Navbar/>
       <Container component="main" maxWidth="xs" sx={{padding:4}}>
         <CssBaseline />

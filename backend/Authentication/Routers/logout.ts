@@ -2,25 +2,29 @@ import { Router } from "express";
 
 // import { mongodb } from "../../db";
 import { AuthModel } from "../Model/SignupSchema";
+import { verifyTokenMiddleware } from "../../middleware";
 
 //api endpoint
 export const Logout = () => {
   const router = Router();
   
-  router.post("/logout", async (req, res) => {
-    const token = req.body.token;
-    req.session = null;
-    (req as any).logout();
+  router.post("/logout", verifyTokenMiddleware,async (req, res) => {
+    const uId = req.body.uId;
+    
+
+      req.session = null;
+      // req.logout();
+    
 
     try {
       const updatedUser = await AuthModel.findOneAndUpdate(
-        { accessToken: token },
+        { uId: uId },
         { $unset: { accessToken: "" } },
         { new: true }
       );
 
       if (updatedUser) {
-        res.status(200).json({ message: "Logout successful!" });
+        res.json({status:200,message:"logged out successfully"});
       } else {
         res.status(401).json({ message: "Invalid or expired token." });
       }

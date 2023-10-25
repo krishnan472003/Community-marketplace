@@ -1,7 +1,6 @@
 //googleAuth.ts
 import { Router } from "express";
 import passport from "passport";
-import util from "util";
 
 export const googleAuth = () => {
   const router = Router();

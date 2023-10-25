@@ -43,10 +43,16 @@ mongodb();
 passport.serializeUser(function (user, done) {
   done(null, user.id);
 });
-passport.deserializeUser(function (id, done) {
-    AuthModel.findById(id, function(err, user) {
-      done(err, user);
-    });
+passport.deserializeUser(async function (id, done) {
+  
+    const user = AuthModel.findById(id)
+    if(user){
+
+      done(null, user);
+    }
+    else{
+      done("error",user);
+    }
 });
 
 passport.use(
@@ -60,13 +66,14 @@ passport.use(
       // proxy: true,
     },
     async function (accessToken, refreshToken, profile, cb) {
-      console.log(" " + cb + " " + JSON.stringify(profile));
+      console.log(" " + cb + " " + JSON.stringify(profile.id));
       const uIdSearch = await AuthModel.findOne({ uId: profile.id });
+      console.log(uIdSearch)
       if (uIdSearch) {
         uIdSearch.accessToken = accessToken;
         await uIdSearch.save();
       } else {
-        const data = await AuthModel.create({
+        await AuthModel.create({
           uId: profile.id,
           accessToken: accessToken,
         });
