@@ -3,22 +3,25 @@
 import { Router } from "express";
 import { verifyTokenMiddleware } from "../../middleware";
 import { UserModel } from "../Model/userSchema";
+import { ProductModel } from "../../Product/Model/sellProductModel";
 
 export const addCart = () => {
   const router = Router();
 
-  router.post("/addCart", verifyTokenMiddleware, async (req, res) => {
+  router.post("/addCart", async (req, res) => {
     try {
       const data = req.body;
       const { name, quantity, pId, price, uId } = data;
       console.log(JSON.stringify(data)+" ================")
       // Find the user based on uId
+      const product =await ProductModel.findOne({pId})
       const user = await UserModel.findOne({ uId: uId });
       const newItem = {
-        name: name,
-        pId: pId,
+        name: product.name,
+        pId: product.pId,
         quantity: quantity,
         price: price,
+        sellerUId : product.sellerUId,
       };
       console.log(user+"====")
       if (user) {

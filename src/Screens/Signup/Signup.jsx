@@ -13,6 +13,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Navbar from "../../components/Navbar"
 import Footer from "../../components/Footer"
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -22,7 +23,7 @@ import axios from 'axios';
 const defaultTheme = createTheme();
 
 export default function Signup() {
-
+  const navigate = useNavigate()
   const handleSubmit = async (event) => {
     event.preventDefault();
     let data= new FormData(event.currentTarget);
@@ -31,14 +32,13 @@ export default function Signup() {
       password: data.get('password'),
     }
     let fetchedData = await axios.post("http://localhost:5000/api/auth/signup",data)
-    console.log(fetchedData)
     fetchedData = fetchedData.data
-    console.log(fetchedData)
+
 
     if(fetchedData.status === 200 ){
       localStorage.setItem('token',fetchedData.token)
       localStorage.setItem('uId',fetchedData.uId)
-      // navigate(`/home/${data.email}`)
+      navigate("/")
     }
     
     console.log(fetchedData.data)

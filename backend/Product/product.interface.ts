@@ -1,4 +1,5 @@
 export interface ProductData{
+    sellerUId:string
     pId: string;
     name: string;
     amount: number;
@@ -6,7 +7,5 @@ export interface ProductData{
     soldOut: boolean;
     image:string;
     quantity: number;
-    address:string;
-    postalCode:number;
-    contactNumber:number;
+
 }   

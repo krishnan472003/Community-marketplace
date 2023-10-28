@@ -12,7 +12,7 @@ export const Logout = () => {
     const uId = req.body.uId;
     
 
-      req.session = null;
+      // req.session = null;
       // req.logout();
     
 
@@ -26,10 +26,10 @@ export const Logout = () => {
       if (updatedUser) {
         res.json({status:200,message:"logged out successfully"});
       } else {
-        res.status(401).json({ message: "Invalid or expired token." });
+        res.status(200).json({ message: "Invalid or expired token." });
       }
     } catch (error) {
-      res.status(500).json({ message: "Error while logging out." });
+      res.status(200).json({ message: "Error while logging out." });
     }
   });
 
