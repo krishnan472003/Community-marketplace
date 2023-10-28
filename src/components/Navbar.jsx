@@ -8,14 +8,14 @@ import Button from '@mui/material/Button';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function Navbar() {
   const [loggedIn, setLoggedIn] = useState(false);
 
   const handleLogout = async () => {
     let token = localStorage.getItem('token');
-    let uId =  localStorage.getItem('uId');
+    let uId = localStorage.getItem('uId');
     let data = {
       token: token,
       uId: uId
@@ -82,7 +82,7 @@ function Navbar() {
                 >
                   <i className="fa-regular fa-user"></i>
                 </Button>
-                
+
                 <Button
                   sx={{ my: 1, color: 'black', display: 'block' }}
                 >
@@ -91,6 +91,16 @@ function Navbar() {
               </>
               :
               <>
+                <Link to="/addproduct">
+
+                </Link>
+                <Link to="/login">
+                  <Button
+                    onClick={handleLogout}
+                    sx={{ my: 1, color: 'white', display: 'block', backgroundColor: '#04AA6D', mx: 1.5 }}
+                  >
+                    Login
+                  </Button>
               <Button
               component="a"
               href="/addproduct"
@@ -113,6 +123,10 @@ function Navbar() {
                     Signup
                   </Button>
                 </Link>
+                <Button
+                  sx={{ my: 1, color: 'white', display: 'block', backgroundColor: '#04AA6D', mx: 1.5 }}>
+                  Sell
+                </Button>
               </>
             }
           </Box>

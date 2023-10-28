@@ -61,7 +61,7 @@ passport.use(
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       callbackURL: "http://localhost:5000/auth/google/callback",
       userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
-      // passReqToCallback: true,
+      passReqToCallback: true,
       // proxy: true,
     },
     async function (accessToken, refreshToken, profile, cb) {

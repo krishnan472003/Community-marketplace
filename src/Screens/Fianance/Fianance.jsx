@@ -1,15 +1,10 @@
 import * as React from 'react';
-import TextField from '@mui/material/TextField';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
-import Float from "../../components/Float"
 import Grid from '@mui/material/Grid';
 import Navbar from "../../components/Navbar"
 import Footer from "../../components/Footer"
-import { green } from '@mui/material/colors';
 import Button from '@mui/material/Button';
-
-import Input from "../../components/Input"
 import { useState } from 'react';
 import Box from '@mui/material/Box';
 function Fianance()
@@ -123,7 +118,7 @@ function Fianance()
         </Grid>
         <Grid item xs direction="column">
           <h4>Sofa</h4>
-          <a href="#" style={{color:'#04AA6D'}}>Remove</a>
+          <div>Remove</div>
         </Grid>
         <Grid item xs>
           <h6>$9.99</h6>

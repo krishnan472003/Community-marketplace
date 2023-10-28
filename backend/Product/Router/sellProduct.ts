@@ -17,7 +17,8 @@ export const Sell = () =>{
             soldOut: false,
             image: req.body.image,
             quantity: req.body.quantity,
-
+            category: req.body.category,
+            subCategory: req.body.subCategory,
 
         }
         const newProduct = await new ProductModel(data);

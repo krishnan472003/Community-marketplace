@@ -11,16 +11,18 @@ export const addCart = () => {
   router.post("/addCart", async (req, res) => {
     try {
       const data = req.body;
-      const { name, quantity, pId, price, uId } = data;
-      console.log(JSON.stringify(data)+" ================")
+      const {quantity, pId, uId } = data;
       // Find the user based on uId
       const product =await ProductModel.findOne({pId})
       const user = await UserModel.findOne({ uId: uId });
+      if(product.quantity - req.body.quantity > 0){
+        product.quantity -= 1
+        await product.save();
       const newItem = {
         name: product.name,
         pId: product.pId,
         quantity: quantity,
-        price: price,
+        price: product.amount,
         sellerUId : product.sellerUId,
       };
       console.log(user+"====")
@@ -31,7 +33,7 @@ export const addCart = () => {
         user.cart.items.push(newItem);
 
         // Update the total in the cart (assuming total needs to be recalculated)
-        user.cart.total += quantity * price;
+        user.cart.total += quantity * newItem.price;
 
         // Save the user document
         const resData = await user.save();
@@ -42,7 +44,7 @@ export const addCart = () => {
           console.log('Error');
         }
       } else {
-        const newUser= {uId:uId,cart:{items:[newItem],total:quantity * price}}
+        const newUser= {uId:uId,cart:{items:[newItem],total:quantity * newItem.price}}
         const updated = await UserModel.create(newUser)
         console.log(updated);
         
@@ -50,6 +52,11 @@ export const addCart = () => {
       }
 
       res.status(200).json({ status: 200, message: "Item added successfully" });
+    }
+    else
+    {
+      res.json({status:400, message : "select a smaller quantity"})
+    }
     } catch (error) {
       console.error(error);
       res.json({ status: 500, message: "Internal server error" });

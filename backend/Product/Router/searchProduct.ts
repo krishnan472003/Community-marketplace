@@ -5,7 +5,10 @@ export const searchProduct = () => {
     const router = Router()
     router.get('/search', async (req, res) => {
         const { query } = req.query; // Use req.query to access query parameters
-        const productDetails = await ProductModel.find({ name:  { $regex: `tr`, $options: 'i' } })
+        console.log(query+"  =")
+        const productDetails = await ProductModel.find({ name:  { $regex: query, $options: 'i' } })
+        console.log(JSON.stringify(productDetails))
+
         if (productDetails) {
             res.json({ productDetails })
         } else {
