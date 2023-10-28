@@ -122,16 +122,13 @@ function AddProduct() {
     <Navbar/>
     <form onSubmit={handleSubmit}>
 
-    <Grid container spacing={2} marginTop={5}>
-    
-  <Grid item xs={6}> 
-  <h4>Add Image:</h4>
-  </Grid>
-  <Grid item xs={3}>
-  <h4>Product Details:</h4>
-  <div>
-
-  
+    <Grid container direction={'column'} justifyContent={'center'} alignItems={'center'} spacing={2} marginTop={5}>
+      <Grid item xs>
+      <h4>Product Details</h4>
+      <h6>Selected Category:</h6>
+      </Grid>
+      <Grid item xs>
+      <div>
         <TextField
           required
           name="name"
@@ -141,11 +138,14 @@ function AddProduct() {
           defaultValue=" "
           value={productData.name}
           onChange={handleInputChange}
-          
+          style={{width:'400px'}}
           
         />
        
       </div>
+    </Grid>
+    <Grid item xs>
+  <div>
       <TextField
           required
           name="quantity"
@@ -155,66 +155,61 @@ function AddProduct() {
           defaultValue=" "
           value={productData.quantity}
           onChange={handleInputChange}
-          
+          style={{width:'400px'}}
           
         />
+      </div>
+    </Grid>
+
+    <Grid item xs>
+  <div>
     <TextField
           required
           name="amount"
-
           id="outlined-required"
           label="Amount"
           multiline
           defaultValue=" "
           value={productData.amount}
           onChange={handleInputChange}
-          
+          style={{width:'400px',pattern:"(\\d+[., \\s]?\\d?)*"}}
           
         />
-   
+      </div>
     </Grid>
-    <Grid item xs={3}>
+    <Grid item xs>
+    <div>
     <TextField
          name="description"
-      
-
           required
           id="outlined-required"
           label="Product Description"
-          rows={12}
-          columns={10}
-
+          rows={6}
           multiline
           defaultValue=" "
           value={productData.description}
           onChange={handleInputChange}
-        
+          style={{width:'400px'}}
           
         />
-   
-  
+   </div>
   </Grid>
-    
-  
-  
 </Grid>
 
-<Grid container spacing={2} marginTop={2} >
-
-<Grid container spacing={2} marginLeft={20} >
-
-
-<Grid item xs={3} >
+<Grid container spacing={2} marginTop={2} direction={'column'} justifyContent={'center'} alignItems={'center'}>
+<Grid item xs> 
+  <h4>Add Image</h4>
+  </Grid>
+<Grid item xs>
 <div>
       {!fileUploaded ? (
         <div>
-          <input type="file" accept=".jpg, .jpeg, .png" onChange={handleFileChange} />
-          <button onClick={handleUpload}>Upload File</button>
+          <input type="file" accept=".jpg, .jpeg, .png" onChange={handleFileChange}/>
+          <button class="fileBtn" onClick={handleUpload}>Upload File</button>
         </div>
       ) : null}
       {base64Image && (
         <div>
-          <h4>Preview:</h4>
           <img
             src={base64Image}
             alt="Uploaded Preview"
@@ -223,66 +218,14 @@ function AddProduct() {
         </div>
       )}
     </div>
-
-
-  
 </Grid>
-
+<Grid items xs marginTop={3} marginBottom={5}>
+<Buttons
+variant="contained"
+text="Submit"
+/>
 </Grid>
-
-<Grid container spacing={2} marginLeft={80} >
-<Grid item xs={6}>
-
-<h4>Adress Details:</h4>
-<TextField
-          name="address"
-          required
-          id="outlined-required"
-          label="Address"
-          multiline
-          defaultValue=" "
-          value={productData.address}
-          onChange={handleInputChange}
-          
-          
-        />
-  <TextField
-         name="postalCode"
-          required
-          id="outlined-required"
-          label="PostalCode"
-          multiline
-          defaultValue=" "
-          value={productData.postalCode}
-          onChange={handleInputChange}
-
-          
-          
-        />
-  <TextField
-          name="contactNumber"
-          required
-          id="outlined-required"
-          label="ContactNumber"
-          multiline
-          defaultValue=" "
-          marginTop={5}
-          value={productData.contactNumber}
-          onChange={handleInputChange}
-
-          
-          
-        />
- 
-  </Grid>
-  </Grid>
-  <Button variant="contained" text="Submit" type="submit">Submit</Button>
-
-
-
-
 </Grid>
-
 </form>
 <Footer/>
 
