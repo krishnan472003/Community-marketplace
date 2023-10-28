@@ -7,5 +7,7 @@ export interface ProductData{
     soldOut: boolean;
     image:string;
     quantity: number;
+    category :string;
+    subCategory : string;
 
 }   

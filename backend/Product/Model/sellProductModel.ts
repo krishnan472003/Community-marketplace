@@ -11,8 +11,8 @@ const ProductSchema = new mongoose.Schema<ProductData>({
         image:String,
         quantity:Number,
         amount:Number, 
-// cat
-//domain
+        category:String,
+        subCategory:String,
 
 });
 
