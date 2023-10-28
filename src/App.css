@@ -38,8 +38,8 @@
 }
 
 /* navbar */
-.navbar a{
-  color: #04AA6D;
+.navbar a:hover{
+  background-color: #04AA6D;
 }
 
 /* search */

@@ -49,11 +49,6 @@ function Profile() {
     <Paper>
     <Navbar />
     <Grid container spacing={2} marginLeft={5} marginTop={5}>
-    <Avatar />
-
-    </Grid>
-    
-    <Grid container spacing={2} marginLeft={5} marginTop={5}>
     <Grid item xs={6}>
   <h4>Personal Details</h4>
   </Grid>
