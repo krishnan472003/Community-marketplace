@@ -1,13 +1,8 @@
 import React, { useState } from 'react';
-import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
-import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Navbar from "../../components/Navbar"
 import Footer from "../../components/Footer"
-import Buttons from "../../components/Button"
-import FullWidthInput from "../../components/FullWidthInput"
-import Read from "../../components/ReadOnly"
 import Avatar from "../../components/Avatar"
 import TextField from '@mui/material/TextField';
 import { useEffect } from 'react';

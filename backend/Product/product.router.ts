@@ -6,7 +6,7 @@ import { filterProduct } from "./Router/filterProduct";
 
 export const Product = ()=>{
     const router = Router();
-    router.use('/product',filterProduct())
+    router.use('/product',filterProduct())//local../api/product
     router.use('/product',searchProduct())
     router.use("/product",Sell());
     router.use('/product',orderProduct())

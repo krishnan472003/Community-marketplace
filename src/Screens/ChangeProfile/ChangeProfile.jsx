@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Navbar from "../../components/Navbar"
@@ -8,18 +7,16 @@ import Footer from "../../components/Footer"
 import Buttons from "../../components/Button"
 import { Box } from '@mui/material';
 import SelectState from '../../components/SelectState';
-import SelectCity from '../../components/SelectCity';
 import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
 import axios from 'axios'
 
-  const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-  }));
+  // const Item = styled(Paper)(({ theme }) => ({
+  //   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  //   ...theme.typography.body2,
+  //   padding: theme.spacing(1),
+  //   textAlign: 'center',
+  //   color: theme.palette.text.secondary,
+  // }));
   
   
   function ChangeProfile(){
@@ -33,11 +30,11 @@ import axios from 'axios'
       postalCode: '',
       contactNumber: '',
     });
-    const divStyle = {
-      color: 'grey',
-      paddingLeft:'20'
+    // const divStyle = {
+    //   color: 'grey',
+    //   paddingLeft:'20'
       
-    };
+    // };
     const handleInputChange = (e) => {
       const { name, value } = e.target;
       setProfileData({
