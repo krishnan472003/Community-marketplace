@@ -161,3 +161,12 @@ transform: scale(1.4) skewX(-0.4deg);
   font-weight: bold;
   font-family: 'Roboto',arial,sans-serif;
 }
+
+.fileBtn {
+  background: #04AA6D;
+  color:#fff;
+  border:none;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+}
