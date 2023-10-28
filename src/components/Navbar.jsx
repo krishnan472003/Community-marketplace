@@ -92,6 +92,13 @@ function Navbar() {
               </>
               :
               <>
+              <Link to = "/addproduct">
+              <Button
+              sx={{ my: 1, color: 'white', display: 'block',backgroundColor:'#04AA6D',mx: 1.5 }}
+              >
+              Sell
+              </Button>
+              </Link>
               <Link to = "/login">
               <Button
               onClick={handleLogout}
