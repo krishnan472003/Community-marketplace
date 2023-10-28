@@ -8,39 +8,39 @@ import Button from '@mui/material/Button';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Navbar() {
   const [loggedIn, setLoggedIn] = useState(false);
 
   const handleLogout = async () => {
-    let token =await localStorage.getItem('token');
-    let uId = await localStorage.getItem('uId');
-
+    let token = localStorage.getItem('token');
+    let uId =  localStorage.getItem('uId');
     let data = {
       token: token,
-      uId : uId
+      uId: uId
     }
     localStorage.clear();
     setLoggedIn(false);
+    console.log("====")
+    console.log(data)
     let fetchedData = await axios.post("http://localhost:5000/api/auth/logout", data)
-    if(fetchedData.status !==200){
+    if (fetchedData.status !== 200) {
       console.log(fetchedData)
       setLoggedIn(true)
-      localStorage.setItem("token",token);
-      localStorage.setItem("uId",uId);
+      localStorage.setItem("token", token);
+      localStorage.setItem("uId", uId);
     }
   }
-  useEffect(()=>{
-  const uId = localStorage.getItem('uId');
-  if(uId){
-    setLoggedIn(true)
-
-  }
-  else{
-    setLoggedIn(false)
-  }
-  },[])
+  useEffect(() => {
+    const uId = localStorage.getItem('uId');
+    if (uId) {
+      setLoggedIn(true)
+    }
+    else {
+      setLoggedIn(false)
+    }
+  }, [])
 
   return (
     <AppBar position="static" color=''>
@@ -62,33 +62,32 @@ function Navbar() {
             }}
           >
             SHOPWISE
-            
+
           </Typography>
-          
-          <Box sx={{ flexGrow: 1, justifyContent:'flex-end',display: { xs: 'none', md: 'flex' }}}>
-            {loggedIn=== true?
-            <>
-             <Button
-              onClick={handleLogout}
-              sx={{ my: 1, color: 'white', display: 'block',backgroundColor:'#04AA6D' }}
-              >
-                Logout
-              </Button>
-              
-              <Button
-                component="a"
-                href="/signup"
-                onClick=""
-                sx={{ my: 1, color: 'black', display: 'block'}}
-              >
-                <i className="fa-regular fa-user"></i>
-              </Button>
-              <Button
-              onClick=""
-              sx={{ my: 1, color: 'black', display: 'block'}}
-              >
-                <i className="fa-solid fa-cart-shopping"></i>
-              </Button>
+
+          <Box sx={{ flexGrow: 1, justifyContent: 'flex-end', display: { xs: 'none', md: 'flex' } }}>
+            {loggedIn === true ?
+              <>
+                <Button
+                  onClick={handleLogout}
+                  sx={{ my: 1, color: 'white', display: 'block', backgroundColor: '#04AA6D' }}
+                >
+                  Logout
+                </Button>
+
+                <Button
+                  component="a"
+                  href="/signup"
+                  sx={{ my: 1, color: 'black', display: 'block' }}
+                >
+                  <i className="fa-regular fa-user"></i>
+                </Button>
+                
+                <Button
+                  sx={{ my: 1, color: 'black', display: 'block' }}
+                >
+                  <i className="fa-solid fa-cart-shopping"></i>
+                </Button>
               </>
               :
               <>
@@ -107,16 +106,15 @@ function Navbar() {
                 Login
               </Button>
                 </Link >
-                <Link to = "/signup">
-              <Button
-              onClick={handleLogout}
-              sx={{ my: 1, color: 'white', display: 'block',backgroundColor:'#04AA6D' }}
-              >
-                Signup
-              </Button>
+                <Link to="/signup">
+                  <Button
+                    sx={{ my: 1, color: 'white', display: 'block', backgroundColor: '#04AA6D' }}
+                  >
+                    Signup
+                  </Button>
                 </Link>
               </>
-              }
+            }
           </Box>
         </Toolbar>
       </Container>

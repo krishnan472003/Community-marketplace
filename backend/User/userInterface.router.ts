@@ -14,6 +14,7 @@ export interface UserData{
 export interface CartItem{
     name:String;
     pId:String;
+    sellerUId:String;
     quantity:number;
     price:number;//single item price
 
