@@ -101,20 +101,6 @@ function Navbar() {
                   >
                     Login
                   </Button>
-              <Button
-              component="a"
-              href="/addproduct"
-              sx={{ my: 1, color: 'white', backgroundColor:'#04AA6D' }}
-              >
-              Sell
-              </Button>
-              <Link to = "/login">
-              <Button
-              onClick={handleLogout}
-              sx={{ my: 1, color: 'white', backgroundColor:'#04AA6D',mx: 1.5 }}
-              >
-                Login
-              </Button>
                 </Link >
                 <Link to="/signup">
                   <Button
