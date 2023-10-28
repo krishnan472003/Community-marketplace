@@ -7,7 +7,7 @@ import Footer from "../../components/Footer"
 
 import Buttons from "../../components/Button"
 import { Box } from '@mui/material';
-import SelectProvince from '../../components/SelectProvince';
+import SelectState from '../../components/SelectState';
 import SelectCity from '../../components/SelectCity';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
@@ -67,7 +67,6 @@ import axios from 'axios'
     <form onSubmit={handleSubmit}>
     <Grid container direction='column' marginTop={5} alignItems='center'>
     <h3>Hello, Name</h3><br/>
-    <h3>Your Current Balance:</h3><br/><br/>
     </Grid>
 
     <Grid container marginTop={5}>
@@ -76,7 +75,7 @@ import axios from 'axios'
     
     <Box sx={{flexGrow:1}}>
     
-    <Grid container>
+    <Grid container marginBottom={3}>
       <Grid item xs>
       <TextField
           required
@@ -87,7 +86,7 @@ import axios from 'axios'
           defaultValue=" "
           value={profileData.fName}
           onChange={handleInputChange}
-          
+          style={{width:'400px'}}
           
         />
       </Grid>
@@ -101,13 +100,13 @@ import axios from 'axios'
           defaultValue=" "
           value={profileData.lName}
           onChange={handleInputChange}
-          
+          style={{width:'400px'}}
           
         />
       </Grid>
-    </Grid>
-    
-    <Grid container>
+      </Grid>
+
+      <Grid container marginBottom={3}>
       <Grid item xs>
       <TextField
           required
@@ -118,13 +117,11 @@ import axios from 'axios'
           defaultValue=" "
           value={profileData.address}
           onChange={handleInputChange}
-          
+          maxRows={3}
+          style={{width:'500px'}}
           
         />
       </Grid>
-    </Grid>
-
-    <Grid container>
       <Grid item xs>
       <TextField
           required
@@ -135,16 +132,17 @@ import axios from 'axios'
           defaultValue=" "
           value={profileData.city}
           onChange={handleInputChange}
-          
+          style={{width:'200px'}}
           
         />
-      </Grid>
     </Grid>
-
-    <Grid container>
+      
+    </Grid>
+    
+    <Grid container marginBottom={5}>
     <Grid item xs>
-    <SelectProvince/>
-      </Grid>
+    <SelectState/>
+    </Grid>
       <Grid item xs>
       <TextField
           required
@@ -155,19 +153,13 @@ import axios from 'axios'
           defaultValue=" "
           value={profileData.postalCode}
           onChange={handleInputChange}
-          
+          style={{width:'200px'}}
           
         />
       </Grid>
-      <Grid items xs>
-      {/* <SelectProvince
-      /> */}
-      </Grid>
-    </Grid>
-
-    <Grid container marginBottom={2}>
+    
       <Grid item xs>
-        <SelectCity /><TextField
+        <TextField
           required
           name="contactNumber"
           id="outlined-required"
@@ -176,14 +168,18 @@ import axios from 'axios'
           defaultValue=" "
           value={profileData.contactNumber}
           onChange={handleInputChange}
-          
+          style={{width:'200px'}}
           
         />
       </Grid>
     </Grid>
 
-    <Grid container justifyContent='flex-end' marginBottom={2}>
-    <Button variant="contained" text="Submit" type="submit">Submit</Button>
+    <Grid container justifyContent='center' marginBottom={2}>
+    {/* <Button variant="contained" text="Submit" type="submit">Submit</Button> */}
+    <Buttons
+        variant = "contained"
+        text="Submit"
+    />
     </Grid>
     </Box>
     </form>
