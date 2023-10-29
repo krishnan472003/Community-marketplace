@@ -6,6 +6,7 @@ import Footer from "../../components/Footer"
 import Buttons from "../../components/Button"
 import TextField from '@mui/material/TextField';
 import axios from 'axios'
+import { useParams } from 'react-router-dom';
 
 
 
@@ -19,6 +20,7 @@ import axios from 'axios'
 
 
 function AddProduct() {
+  const { category, subcategory } = useParams();
   const [selectedFile, setSelectedFile] = useState(null);
   const [base64Image, setBase64Image] = useState(null);
   const [fileUploaded, setFileUploaded] = useState(false);
@@ -27,9 +29,8 @@ function AddProduct() {
     quantity: '',
     amount: '',
     description: '',
-    address: '',
-    postalCode: '',
-    contactNumber: '',
+    category: category,
+    subCategory: subcategory,
   });
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -118,7 +119,6 @@ function AddProduct() {
     <Grid container direction={'column'} justifyContent={'center'} alignItems={'center'} spacing={2} marginTop={5}>
       <Grid item xs>
       <h4>Product Details</h4>
-      <h6>Selected Category:</h6>
       </Grid>
       <Grid item xs>
       <div>
@@ -165,7 +165,7 @@ function AddProduct() {
           defaultValue=" "
           value={productData.amount}
           onChange={handleInputChange}
-          style={{width:'400px',pattern:"(\\d+[., \\s]?\\d?)*"}}
+          style={{width:'400px'}}
           
         />
       </div>
@@ -186,6 +186,44 @@ function AddProduct() {
           
         />
    </div>
+  </Grid>
+  <Grid item xs>
+  <div>
+      <TextField
+          required
+          name="category"
+          id="outlined-required"
+          label="Category"
+          multiline
+          defaultValue=""
+          InputProps={{
+            readOnly: true,
+          }}
+          // value={category}
+          value={productData.category}
+          onChange={handleInputChange}
+          style={{width:'400px'}}
+        />
+      </div>
+  </Grid>
+  <Grid item xs>
+  <div>
+      <TextField
+          required
+          name="subCategory"
+          id="outlined-required"
+          label="subCategory"
+          multiline
+          defaultValue={subcategory}
+          InputProps={{
+            readOnly: true,
+          }}
+          // value={subcategory}
+          value={productData.subCategory}
+          onChange={handleInputChange}
+          style={{width:'400px'}}
+        />
+      </div>
   </Grid>
 </Grid>
 
@@ -213,10 +251,11 @@ function AddProduct() {
     </div>
 </Grid>
 <Grid items xs marginTop={3} marginBottom={5}>
-<Buttons
+  <button type="submit" name="submit">Submit</button>
+{/* <Buttons
 variant="contained"
 text="Submit"
-/>
+/> */}
 </Grid>
 </Grid>
 </form>

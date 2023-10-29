@@ -1,3 +1,6 @@
+@import "../node_modules/@syncfusion/ej2-base/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-navigations/styles/material.css";
+
 .App {
   text-align: center;
 }
@@ -38,8 +41,8 @@
 }
 
 /* navbar */
-.navbar a{
-  color: #04AA6D;
+.navbar a:hover{
+  background-color: #04AA6D;
 }
 
 /* search */
@@ -169,4 +172,88 @@ transform: scale(1.4) skewX(-0.4deg);
   padding: 10px;
   margin-bottom: 15px;
   border-radius: 10px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.navbar1 {
+  overflow: hidden;
+  background-color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar1 a {
+  float: left;
+  font-size: 16px;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: black;
+  padding: 14px 16px;
+  background-color: inherit;
+  font: inherit;
+  margin: 0;
+}
+
+.dropdown-content {
+  display: none;
+  /* position: relative; */
+  background-color: #ffff;
+  width: 100%;
+  left: 0;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Create three equal columns that float next to each other */
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 10px;
+  background-color: #fff;
+  height: 250px;
+}
+
+.column a {
+  float: none;
+  color: black;
+  padding: 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.column a:hover {
+  background-color: #ddd;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.centered-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
