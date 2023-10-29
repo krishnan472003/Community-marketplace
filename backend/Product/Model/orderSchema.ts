@@ -16,7 +16,7 @@ const OrderItemSchema = new mongoose.Schema<Cart>({
   total:Number, 
 })
 const OrderSchema = new mongoose.Schema<OrderData>({
-        items:[OrderItemSchema],
+        cart:OrderItemSchema,
         uId: String,
         tmstp:Number,
       });

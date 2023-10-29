@@ -2,7 +2,7 @@ import { Cart } from "../User/userInterface.router";
 
 export interface OrderData {
     uId:String;
-    items: Cart[];
+    cart: Cart;
     tmstp:number;
 
   }
