@@ -9,6 +9,7 @@ import AddProduct from './Screens/AddProduct/AddProduct';
 import BuyProduct from './Screens/BuyProduct/BuyProduct';
 import ChangeProfile from './Screens/ChangeProfile/ChangeProfile';
 import Fianance from './Screens/Fianance/Fianance';
+import Category from './Screens/Category/Category';
 
 function App() {
   return (
@@ -20,11 +21,12 @@ function App() {
           <Route path="signup" element={<Signup />} />
           <Route path="login" element={<Login />} />
           <Route path="cart" element={<Cart />} />
-          <Route path="addproduct" element={<AddProduct />} />
+          <Route path="/category/:category/:subcategory/addproduct" element={<AddProduct />} />
           <Route path="changeProfile" element={<ChangeProfile />} />
           <Route path="buyproduct" element={<BuyProduct />} />
           <Route path="finance" element={<Fianance />} />
           <Route path="changeprofile" element={<ChangeProfile />} />
+          <Route path="/category" element={<Category/>} />
           </Routes>
       </Router>
     </div>

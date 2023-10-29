@@ -3,9 +3,10 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Navbar from "../../components/Navbar"
 import Footer from "../../components/Footer"
-import Avatar from "../../components/Avatar"
 import TextField from '@mui/material/TextField';
 import { useEffect } from 'react';
+import Buttons  from '../../components/Button';
+import { Link } from 'react-router-dom';
 
 function Profile() {
   const [userData, setUserData] = useState({
@@ -43,32 +44,31 @@ function Profile() {
   return(
     <Paper>
     <Navbar />
-    <Grid container spacing={2} marginLeft={5} marginTop={5}>
-    <Grid item xs={6}>
+    <Grid container spacing={2} marginLeft={2} marginTop={5}>
+    <Grid item xs>
   <h4>Personal Details</h4>
   </Grid>
-  <Grid container spacing={2}  marginLeft={2} marginTop={5}>
-  <Grid item xs={6}>
+  </Grid>
+  <Grid container spacing={2} marginLeft={2} marginTop={2}>
+  <Grid item xs>
   <TextField
-         
-
+         style={{width:'300px'}}
           id="standard-read-only-input"
-          label="fName"
+          label="FirstName"
           value={userData.fName}
           
           defaultValue="Name"
           InputProps={{
             readOnly: true,
           }}
-          variant="standard"
+          variant="outlined"
         />
      
       
   </Grid>
-  <Grid item xs={6}>
+  <Grid item xs>
   <TextField
-         
-
+         style={{width:'300px'}}
          id="standard-read-only-input"
          label="Second Name"
          value={userData.lName}
@@ -77,11 +77,12 @@ function Profile() {
          InputProps={{
            readOnly: true,
          }}
-         variant="standard"
+         variant="outlined"
        />
+  </Grid>
+  <Grid item xs>
     <TextField
-         
-
+         style={{width:'300px'}}
          id="standard-read-only-input"
          label="Contact Number"
          value={userData.contactNumber}
@@ -91,11 +92,12 @@ function Profile() {
          InputProps={{
            readOnly: true,
          }}
-         variant="standard"
+         variant="outlined"
        />
+    </Grid>
+    <Grid item xs>
      <TextField
-         
-
+         style={{width:'300px'}}
          id="standard-read-only-input"
          label="Balance"
          value={userData.balance}
@@ -105,11 +107,12 @@ function Profile() {
          InputProps={{
            readOnly: true,
          }}
-         variant="standard"
+         variant="outlined"
        />
+    </Grid>
+    <Grid item xs>
     <TextField
-         
-
+         style={{width:'300px'}}
          id="standard-read-only-input"
          label="uId"
          value={userData.uId}
@@ -119,24 +122,19 @@ function Profile() {
          InputProps={{
            readOnly: true,
          }}
-         variant="standard"
+         variant="outlined"
        />
   </Grid>
-  
-
   </Grid>
-  
-    
-   </Grid>
-   <Grid container spacing={2} marginLeft={5} marginTop={5}>
-    <Grid item xs={6}>
+   <Grid container spacing={2} marginLeft={2} marginTop={2}>
+    <Grid item xs>
   <h4>Adress Details</h4>
-  </Grid>
-  <Grid container spacing={2}  marginLeft={2} marginTop={5}>
-  <Grid item xs={6}>
+    </Grid>
+    </Grid>
+  <Grid container spacing={2}  marginLeft={2} marginTop={2} marginBottom={5} >
+  <Grid item xs>
   <TextField
-         
-
+         style={{width:'300px'}}
          id="standard-read-only-input"
          label="Address"
          value={userData.address}
@@ -146,15 +144,12 @@ function Profile() {
          InputProps={{
            readOnly: true,
          }}
-         variant="standard"
+         variant="outlined"
        />
   </Grid>
-  </Grid>
-  <Grid container spacing={2}  marginLeft={2} marginTop={5}>
-  <Grid item xs={6}>
+  <Grid item xs>
   <TextField
-         
-
+         style={{width:'300px'}}
          id="standard-read-only-input"
          label="City"
          value={userData.city}
@@ -164,15 +159,14 @@ function Profile() {
          InputProps={{
            readOnly: true,
          }}
-         variant="standard"
+         variant="outlined"
        />
         
        
   </Grid>
-  <Grid item xs={6}>
+  <Grid item xs>
   <TextField
-         
-
+         style={{width:'300px'}}
          id="standard-read-only-input"
          label="State"
          value={userData.state}
@@ -182,15 +176,13 @@ function Profile() {
          InputProps={{
            readOnly: true,
          }}
-         variant="standard"
+         variant="outlined"
        />
   </Grid>
-  </Grid>
-  <Grid container spacing={2}  marginLeft={45} marginTop={5}>
+  
   <Grid item xs={12}>
   <TextField
-         
-
+         style={{width:'300px'}}
          id="standard-read-only-input"
          label="PostalCode"
          value={userData.postalCode}
@@ -201,15 +193,20 @@ function Profile() {
          InputProps={{
            readOnly: true,
          }}
-         variant="standard"
+         variant="outlined"
        />
   </Grid>
-  
   </Grid>
-
-  
-    
-   </Grid>
+  <Grid container marginBottom={2}>
+    <Grid item xs>
+    <Link to="/changeprofile">
+      <Buttons
+        variant="contained"
+        text="Edit Profile"
+      />
+    </Link>
+    </Grid>
+  </Grid>
    <Footer />
     </Paper>
     

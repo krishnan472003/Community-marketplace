@@ -50,7 +50,7 @@ function Navbar() {
             variant="h6"
             noWrap
             component="a"
-            href="/home"
+            href="/"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -77,13 +77,15 @@ function Navbar() {
 
                 <Button
                   component="a"
-                  href="/signup"
+                  href="/profile"
                   sx={{ my: 1, color: 'black', display: 'block' }}
                 >
                   <i className="fa-regular fa-user"></i>
                 </Button>
 
                 <Button
+                  component="a"
+                  href="/cart"
                   sx={{ my: 1, color: 'black', display: 'block' }}
                 >
                   <i className="fa-solid fa-cart-shopping"></i>
@@ -91,9 +93,6 @@ function Navbar() {
               </>
               :
               <>
-                <Link to="/addproduct">
-
-                </Link>
                 <Link to="/login">
                   <Button
                     onClick={handleLogout}
@@ -109,10 +108,12 @@ function Navbar() {
                     Signup
                   </Button>
                 </Link>
+                <Link to="/category">
                 <Button
                   sx={{ my: 1, color: 'white', display: 'block', backgroundColor: '#04AA6D', mx: 1.5 }}>
                   Sell
                 </Button>
+                </Link>
               </>
             }
           </Box>
