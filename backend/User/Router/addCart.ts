@@ -11,11 +11,12 @@ export const addCart = () => {
   router.post("/addCart", async (req, res) => {
     try {
       const data = req.body;
+      console.log(data)
       const {quantity, pId, uId } = data;
       // Find the user based on uId
       const product =await ProductModel.findOne({pId})
       const user = await UserModel.findOne({ uId: uId });
-      if(product.quantity - req.body.quantity > 0){
+      if(Number(product.quantity) - Number(quantity) > 0){
         product.quantity -= 1
         await product.save();
       const newItem = {
@@ -33,7 +34,7 @@ export const addCart = () => {
         user.cart.items.push(newItem);
 
         // Update the total in the cart (assuming total needs to be recalculated)
-        user.cart.total += quantity * newItem.price;
+        user.cart.total += newItem.quantity * newItem.price;
 
         // Save the user document
         const resData = await user.save();
