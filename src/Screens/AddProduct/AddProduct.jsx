@@ -7,22 +7,26 @@ import Buttons from "../../components/Button"
 import TextField from '@mui/material/TextField';
 import axios from 'axios'
 import { useParams } from 'react-router-dom';
+import { getStorage, ref,uploadBytes,getDownloadURL } from "firebase/storage";
+import { storage } from '../../firebase';
 
+const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
+function generateString(length) {
+    let result = '';
+    const charactersLength = characters.length;
+    for ( let i = 0; i < length; i++ ) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
 
-// const Item = styled(Paper)(({ theme }) => ({
-//   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-//   ...theme.typography.body2,
-//   padding: theme.spacing(1),
-//   textAlign: 'center',
-//   color: theme.palette.text.secondary,
-// }));
+    return result;
+}
 
 
 function AddProduct() {
   const { category, subcategory } = useParams();
   const [selectedFile, setSelectedFile] = useState(null);
-  const [base64Image, setBase64Image] = useState(null);
+  const [imageUrl,setImageUrl] = useState("")
   const [fileUploaded, setFileUploaded] = useState(false);
   const [productData, setProductData] = useState({
     name: '',
@@ -35,18 +39,8 @@ function AddProduct() {
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     setSelectedFile(file);
-
-    // Create a FileReader to read the file and convert it to Base64.
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        setBase64Image(e.target.result);
-      };
-      reader.readAsDataURL(file);
-    } else {
-      setBase64Image(null);
-    }
   };
+
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setProductData({
@@ -57,32 +51,29 @@ function AddProduct() {
 
   const handleUpload = () => {
     if (selectedFile) {
-      // You can implement the file upload logic here, e.g., send the Base64 data to a server.
-      // For simplicity, we will just log the file details.
+      const storageRef = ref(storage);
+      const imagesRef = ref(storageRef, `images/${generateString(8)}selectedFile.name`);
+      console.log(selectedFile)
+      console.log(imagesRef)
       console.log('Uploading file:', selectedFile.name);
-      console.log('Uploading file:', base64Image);
-      // setBase64Image({ ...base64Image, myFile : base64Image})
+      uploadBytes(imagesRef, selectedFile).then((snapshot) => {
+        console.log('Uploaded a blob or file!');
+        console.log(snapshot)
+      });
+
+      getDownloadURL(imagesRef)
+      .then((url) => {
+        console.log(url)
+        setImageUrl(url)
+      })
+      .catch((error) => {
+        console.error('Error getting download URL: ', error);
+      });
       setFileUploaded(true);
     } else {
       alert('Please select a file before uploading.');
     }
   };
-
-  // const url="http://localhost:3000/sell"
-
-  // const createPost=async(newImage)=>{
-
-  //   try {
-  //     await axios.post(url,newImage)
-      
-  //   } catch (error) {
-      
-  //   }
-    
-
-  // }
-
-
 
   const handleSubmit=async(e)=>{
     e.preventDefault();
@@ -90,15 +81,14 @@ function AddProduct() {
     // Create an object that contains all the input data, including the image data.
     const postData = {
       ...productData,
-      image: base64Image,
+      image: imageUrl,
 
    
   }
   try {
     console.log(postData)
-    // Send a POST request to your backend API to save the data in MongoDB.
+    
     const response = await axios.post('http://localhost:5000/api/product/sell', postData);
-
 
     if (response.status === 200) {
       console.log('Data saved successfully to MongoDB');
@@ -239,10 +229,10 @@ function AddProduct() {
           <button class="fileBtn" onClick={handleUpload}>Upload File</button>
         </div>
       ) : null}
-      {base64Image && (
+      {imageUrl && (
         <div>
           <img
-            src={base64Image}
+            src={imageUrl}
             alt="Uploaded Preview"
             style={{ maxWidth: '100%', height: '400px', width: '400px' }} // Adjust the width as needed
           />

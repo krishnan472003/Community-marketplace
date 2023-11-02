@@ -40,7 +40,7 @@ import axios from 'axios'
       setProfileData({
         ...profileData,
         [name]: value,
-        uId:123
+        uId:localStorage.getItem('uId')
       });
     };
 

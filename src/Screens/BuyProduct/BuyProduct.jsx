@@ -42,7 +42,7 @@ function BuyProduct() {
     <Navbar/>
     <Grid container spacing={5} marginTop={3} marginBottom={2}>
   <Grid item xs={5} marginLeft={5}>
-  <img src="" alt='' width="500px" height="450px"></img><br/><br/>
+  <img src= {product.image} alt='' width="500px" height="450px"></img><br/><br/>
   <h3  style={{color:"#04AA6D"}}>{product.amount}</h3>
   </Grid>
   <Grid item xs={5}>

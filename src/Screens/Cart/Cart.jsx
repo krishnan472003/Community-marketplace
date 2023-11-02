@@ -139,9 +139,6 @@ function Cart() {
           })
         }
         <Grid>
-          <Grid item xs>
-            <h6>{cart?.total}</h6>
-          </Grid>
         </Grid>
 
       </Box>
@@ -152,7 +149,7 @@ function Cart() {
             <h5>Sub-Total:</h5>
           </Grid>
           <Grid item xs={2}>
-            <h5>$10.5</h5>
+            <h5>{cart?.total}</h5>
           </Grid>
           <Grid item xs>
             <Button

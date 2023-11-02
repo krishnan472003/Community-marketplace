@@ -13,7 +13,7 @@ import passport from "passport";
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
 import { AuthModel } from "./Authentication/Model/SignupSchema";
 import { googleAuth } from "./Authentication/Routers/googleAuth";
-import { s3Url } from "./s3Url";
+// import { s3Url } from "./s3Url";
 
 config();
 
@@ -88,7 +88,7 @@ app.use(bodyParser.json({ limit: "10mb" }));
 app.use(bodyParser.urlencoded({ extended: true, limit: "10mb" }));
 
 app.use("/", googleAuth());
-app.use("/api", s3Url());
+// app.use("/api", s3Url());
 app.use("/api", AuthModule());
 app.use("/api", Product());
 app.use("/api", UserModule());

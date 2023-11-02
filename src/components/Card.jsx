@@ -8,7 +8,7 @@ export default function ActionAreaCard(props) {
   
   return (
 
-    <Card sx={{ maxWidth: 345,padding: 3,height: 400}} >
+    <Card sx={{ width: 300 ,padding: 3,height: 400}} >
       <CardActionArea>
         <CardMedia
           component="img"

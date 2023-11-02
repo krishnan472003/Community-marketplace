@@ -11,7 +11,7 @@ import {Link} from 'react-router-dom'
 
 export default function Home() {
   const [search, setSearch] = useState("");
-  // const [filter,setFilter] = useState("");
+  const [filter,setFilter] = useState("");
   const [cardData, setCardData] = useState(null);
   
   useEffect(() => {
@@ -38,8 +38,9 @@ export default function Home() {
 
 
   }
-  // const handleFilter = async () => {
+  // const handleFilter = async (value) => {
   //   setCardData(await axios.get(`http://localhost:5000/api/product/filter/?category=${category}&subCategory=${subCat}`))
+  //   console.log(cardData)
   // }
   return (
     <div>
@@ -47,14 +48,14 @@ export default function Home() {
       <div className='navbar1'>
       <div className='dropdown'>
       <button className='dropbtn'>Categories<i className='fa fa-caret-down'></i></button>
-      <div className='dropdown-content'>
+      {/* <div className='dropdown-content'>
           <div className='row'>
             <div className='column'>
-              <a href='#'>Fashion</a>
+              <a href='#' onClick={(e)=>handleFilter(e.target.value) } value = 'fashion'>Fashion</a>
                 <a href='#'>Tshirt</a>
             </div>
           </div>
-      </div>
+      </div> */}
       </div>
       </div>
 
@@ -73,7 +74,7 @@ export default function Home() {
               return (
                 <Grid item justify="space-around"  >
                   <Link state = {card} to ='/buyproduct'>
-                  <Card name={card.name} content={card.description} image={cards[0].image} price={card.price} />
+                  <Card name={card.name} content={card.description} image={card.image} price={card.price} />
                   </Link>
                 </Grid>
               )

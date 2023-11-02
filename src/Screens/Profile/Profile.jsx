@@ -22,7 +22,7 @@ function Profile() {
     state: '',
     postalCode: '',
   });
-  const uId = 123;
+  const uId = localStorage.getItem('uId');
   const fetchUserData = async (uId) => {
     try {
       const response = await fetch(`http://localhost:5000/api/user/userProfile`); // Replace with your backend API endpoint
