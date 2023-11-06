@@ -39,6 +39,11 @@ function AddProduct() {
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     setSelectedFile(file);
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      setImageUrl(e.target.result);
+    };
+    reader.readAsDataURL(file);
   };
 
   const handleInputChange = (event) => {
@@ -241,7 +246,7 @@ function AddProduct() {
     </div>
 </Grid>
 <Grid items xs marginTop={3} marginBottom={5}>
-  <button type="submit" name="submit">Submit</button>
+<button type="submit" name="submit" style={{backgroundColor: '#04AA6D', color:'#fff', border:'none', padding:'10px', borderRadius:'10px'}}>Submit</button>
 {/* <Buttons
 variant="contained"
 text="Submit"

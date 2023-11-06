@@ -31,6 +31,7 @@ function Navbar() {
       localStorage.setItem("token", token);
       localStorage.setItem("uId", uId);
     }
+    // window.location.replace('http://localhost:3000/');
   }
   useEffect(() => {
     const uId = localStorage.getItem('uId');
@@ -75,6 +76,13 @@ function Navbar() {
                   Logout
                 </Button>
 
+                <Link to="/category">
+                <Button
+                  sx={{ my: 1, color: 'white', display: 'block', backgroundColor: '#04AA6D', mx: 1.5 }}>
+                  Sell
+                </Button>
+                </Link>
+
                 <Button
                   component="a"
                   href="/profile"
@@ -107,12 +115,6 @@ function Navbar() {
                   >
                     Signup
                   </Button>
-                </Link>
-                <Link to="/category">
-                <Button
-                  sx={{ my: 1, color: 'white', display: 'block', backgroundColor: '#04AA6D', mx: 1.5 }}>
-                  Sell
-                </Button>
                 </Link>
               </>
             }

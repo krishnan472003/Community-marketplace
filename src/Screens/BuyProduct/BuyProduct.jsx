@@ -4,7 +4,7 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Navbar from "../../components/Navbar"
 import Footer from "../../components/Footer"
-import Button from "../../components/Button"
+import Buttons from "../../components/Button"
 import { useLocation } from 'react-router';
 import { useNavigate } from 'react-router-dom';
 
@@ -49,13 +49,8 @@ function BuyProduct() {
     <h3>{product.name}</h3><br></br>
   <h4>Description:</h4>
    <p>{product.description}</p>
-
-    <Button
-        variant="contained"
-        text = "Add to Cart"
-        onClick={handleAddToCart}
-    />
-            <button onClick={handleAddToCart}>ad</button>
+   
+            <button onClick={handleAddToCart} style={{backgroundColor: '#04AA6D', color:'#fff', border:'none', padding:'10px', borderRadius:'10px'}}>Add to Cart</button>
 
     </Grid>
 </Grid>

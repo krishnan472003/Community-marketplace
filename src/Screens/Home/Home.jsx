@@ -11,13 +11,14 @@ import {Link} from 'react-router-dom'
 
 export default function Home() {
   const [search, setSearch] = useState("");
-  const [filter,setFilter] = useState("");
+  const [subCat, setSubCat] = useState("");
+  const [Cat, setCat] = useState("");
   const [cardData, setCardData] = useState(null);
   
   useEffect(() => {
     // login status
     handleSearch()
-    // handleFilter()
+    handleFilter()
     const urlSearchString = window.location.search;
     const params = new URLSearchParams(urlSearchString);
     const accessToken = params.get('accessToken')
@@ -29,7 +30,7 @@ export default function Home() {
   }, []);
 
   // useEffect(() => {
-  //   handleSearch()
+    // handleSearch()
   // }, [search])
   
   const handleSearch = async () => {
@@ -38,35 +39,38 @@ export default function Home() {
 
 
   }
-  // const handleFilter = async (value) => {
-  //   setCardData(await axios.get(`http://localhost:5000/api/product/filter/?category=${category}&subCategory=${subCat}`))
-  //   console.log(cardData)
-  // }
+
+  const handleFilter = async () => {
+      console.log(subCat)
+      console.log(Cat)
+      setCardData(await axios.get(`http://localhost:5000/api/product/filter/?category=${Cat}&subCategory=${subCat}`));
+      console.log(cardData)
+  };
   return (
     <div>
       <Navbar />
+      <div className="search">
+          <input type="text" placeholder="What product are you looking for?" value={search} onChange={(e) => { setSearch(e.target.value) }}/>
+          <button type="submit" className="searchButton" onClick={handleSearch}>
+            <i className="fa fa-search"></i>
+        </button>
+      </div>
+
       <div className='navbar1'>
       <div className='dropdown'>
       <button className='dropbtn'>Categories<i className='fa fa-caret-down'></i></button>
-      {/* <div className='dropdown-content'>
+      <div className='dropdown-content'>
           <div className='row'>
             <div className='column'>
-              <a href='#' onClick={(e)=>handleFilter(e.target.value) } value = 'fashion'>Fashion</a>
-                <a href='#'>Tshirt</a>
+              <a onMouseEnter={() => setCat("properties")}  data-value="properties">Properties</a>
+                <a onMouseEnter={() => setSubCat("for-sale-houses-apartments")} onClick={handleFilter} data-value="for-sale-houses-apartments">For Sale: Houses & Apartments</a>
             </div>
           </div>
-      </div> */}
+      </div>
       </div>
       </div>
 
-      <div className='search'>
-        <input type="text" placeholder='search' value={search} onChange={(e) => { setSearch(e.target.value) }} />
-        <button onClick={handleSearch}> 
-          {/* <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" /> */}
-          <i class="fa fa-search"></i>
-          {/* <img src="search-icon.png" alt="Search" /> */}
-        </button>
-      </div>
+
       <Paper sx={{ padding: 10 }}>
         <Grid container justify="center" spacing={4}>
           {

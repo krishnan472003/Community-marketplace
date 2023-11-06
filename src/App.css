@@ -48,38 +48,53 @@
 /* search */
 .search {
   display: flex;
-  height: 300px;
+  height: 400px;
   background-image: url("../public/bg-image.png");
+  background-repeat: no-repeat;
+  background-size: cover;
   justify-content: center;
   align-items: center;
 }
 
 .search input {
-  width: 50%;
+  width: 40%;
   height: 50px;
   border-radius: 25px;
   border-style: none;
-  padding-left: 10px; /* Added 10px padding on the left */
-  box-sizing: border-box; /* Include padding in the width calculation */
-  font-size: 16px; /* Adjust font size as needed */
+  padding-left: 10px; 
+  box-sizing: border-box; 
+  font-size: 16px;
   filter: drop-shadow(5px 5px 5px black);
   opacity: 0.5;
 }
 
 .search input:focus {
-  outline: none; /* Remove default focus outline if desired */
+  outline: none;
   opacity: 0.75;
 }
 
 .search input::placeholder {
-  color: black; /* Adjust placeholder color as desired */
-  text-align: center; /* Center align the placeholder text */
+  color: black; 
 }
 
-/* Optional: Add transition for smoother animation */
-.search input {
+ .search input {
   transition: width 0.3s;
 }
+
+.searchButton {
+  border: none;
+  background: #04AA6D; /* Change the button background color as desired */
+  color: white; /* Change the text color as desired */
+  cursor: pointer;
+  font-size: 18px;
+  border-radius: 5px 5px 5px 5px; /* Rounded corners on the right side to match the input */
+  position: relative;
+  left: -40px; /* Adjust the positioning to place the button inside the input */
+}
+
+.search input:focus {
+  outline: none; /* Remove the default focus outline if desired */
+} 
 
 /* footer */
 
@@ -121,11 +136,13 @@
   margin: 8px 0;
 }
 
-google-button {
-  height: 40px;
+.google-button {
+  margin-top: 2px;
+  margin-left: 15px;
+  height: 30px;
   border-width: 0;
-  background: white;
-  color: #737373;
+  background: #fff;
+  color: #04AA6D;
   border-radius: 5px;
   white-space: nowrap;
   box-shadow: 1px 1px 0px 1px rgba(0,0,0,0.1);
@@ -149,18 +166,18 @@ transform: scale(1.4) skewX(-0.4deg);
   display: inline-block;
   vertical-align: middle;
   margin: 0px 0 8px 8px;
-  width: 18px;
-  height: 18px;
+  width: 15px;
+  height: 15px;
   box-sizing: border-box;
 }
 .google-button__icon--plus {
-  width: 27px;
+  width: 15px;
 }
 .google-button__text {
   display: inline-block;
   vertical-align: middle;
-  padding: 0 24px;
-  font-size: 14px;
+  padding: 0 15px;
+  font-size: 12px;
   font-weight: bold;
   font-family: 'Roboto',arial,sans-serif;
 }
@@ -211,7 +228,7 @@ transform: scale(1.4) skewX(-0.4deg);
 
 .dropdown-content {
   display: none;
-  /* position: relative; */
+  position: relative;
   background-color: #ffff;
   width: 100%;
   left: 0;
@@ -256,4 +273,60 @@ transform: scale(1.4) skewX(-0.4deg);
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+form {
+  width: 200px;
+}
+
+.value-button {
+  display: inline-block;
+  border: 1px solid #ddd;
+  /* margin: 0px; */
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  vertical-align: middle;
+  background: #eee;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.value-button:hover {
+  cursor: pointer;
+}
+
+form #decrease {
+  /* margin-right: -4px; */
+  border-radius: 8px 0 0 8px;
+}
+
+form #increase {
+  /* margin-left: -4px; */
+  border-radius: 0 8px 8px 0;
+}
+
+form #input-wrap {
+  margin: 0px;
+  padding: 0px;
+}
+
+input#number {
+  text-align: center;
+  border: none;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  margin: 0px;
+  width: 40px;
+  height: 40px;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
