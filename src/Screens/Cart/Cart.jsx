@@ -76,6 +76,25 @@ function Cart() {
     }
   };
 
+  const increaseValue = (cartItem) => {
+    // Get the current value from state and increment it
+    const updatedCart = cart.items.map((item) => ({
+      ...item,
+      quantity: item.id === cartItem.id ? item.quantity + 1 : item.quantity
+    }));
+    setCart({ ...cart, items: updatedCart });
+  };
+
+  const decreaseValue = (cartItem) => {
+    // Get the current value from state and decrement it
+    const updatedCart = cart.items.map((item) => ({
+      ...item,
+      quantity: item.id === cartItem.id ? item.quantity - 1 : item.quantity
+    }));
+    setCart({ ...cart, items: updatedCart });
+  };
+
+
   return (
     <Paper>
       <Navbar />
@@ -88,17 +107,14 @@ function Cart() {
 
       <Box sx={{ flexGrow: 1 }} margin={5}>
         <Grid container spacing={3} marginBottom={2}>
-          <Grid item xs={5}>
+          <Grid item xs={6}>
             <h6>Product</h6>
-          </Grid>
-          <Grid item xs>
-            <h6>Price</h6>
           </Grid>
           <Grid item xs>
             <h6>Quantity</h6>
           </Grid>
           <Grid item xs>
-            <h6>Total</h6>
+            <h6>Sub-Total</h6>
           </Grid>
         </Grid>
         <Grid>
@@ -115,15 +131,17 @@ function Cart() {
                   </Grid>
                   <Grid item xs direction="column">
                     <h4>{cartItem.name}</h4>
-                    <div>Remove</div>
+                    <a href="#">Remove</a>
                   </Grid>
-                  <Grid item xs>
+                  {/* <Grid item xs>
                     <h6>{cartItem.price}</h6>
-                  </Grid>
+                  </Grid> */}
                   <Grid item xs>
-                    <select name="quantity" id="">
-                      <option value={cartItem.quantity}>{cartItem.quantity}</option>
-                    </select>
+                  <form>
+                    <div className="value-button" id="decrease" onClick={() => decreaseValue(cartItem)} value="Decrease Value">-</div>
+                    <input type="number" id="number" value={cartItem.quantity} />
+                    <div className="value-button" id="increase" onClick={() => increaseValue(cartItem)} value="Increase Value">+</div>
+                  </form>
                   </Grid>
                   <Grid item xs>
                     <h6>{cartItem.price * cartItem.quantity}</h6>
@@ -146,17 +164,16 @@ function Cart() {
       <Box sx={{ flexGrow: 1 }} margin={5}>
         <Grid container>
           <Grid item xs={1}>
-            <h5>Sub-Total:</h5>
+            <h5>Total:</h5>
           </Grid>
           <Grid item xs={2}>
             <h5>{cart?.total}</h5>
           </Grid>
           <Grid item xs>
             <Button
+              style={{backgroundColor: '#04AA6D', color:'#fff', border:'none', padding:'10px', borderRadius:'10px'}}
               variant="contained"
-              text="Checkout"
-              onClick={handlePayment}
-            />
+              onClick={handlePayment}>Checkout</Button>
           </Grid>
         </Grid>
       </Box>
