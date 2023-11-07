@@ -1,36 +1,34 @@
 // api.js
 
 import { Router } from "express";
-import { verifyTokenMiddleware } from "../../middleware";
 import { UserModel } from "../Model/userSchema";
 import { ProductModel } from "../../Product/Model/sellProductModel";
+import { CartItem } from "../userInterface.router";
 
 export const addCart = () => {
   const router = Router();
 
   router.post("/addCart", async (req, res) => {
-    try {
+      console.log("==============================================")
       const data = req.body;
       console.log(data)
       const {quantity, pId, uId } = data;
       // Find the user based on uId
+      console.log(typeof uId)
       const product =await ProductModel.findOne({pId})
-      const user = await UserModel.findOne({ uId: uId });
-      if(Number(product.quantity) - Number(quantity) > 0){
-        product.quantity -= 1
-        await product.save();
-      const newItem = {
+      let user = await UserModel.findOne({ uId: uId });
+      console.log(product+"===="+user)
+      const newItem:CartItem = {
         name: product.name,
         pId: product.pId,
         quantity: quantity,
         price: product.amount,
         sellerUId : product.sellerUId,
+        image :product.image,
       };
-      console.log(user+"====")
-      if (user) {
-        // Create a new cart item
-
-        // Add the item to the cart
+      console.log(newItem)
+      // console.log(user+"===================================================================")
+      if (user.cart ) {
         user.cart.items.push(newItem);
 
         // Update the total in the cart (assuming total needs to be recalculated)
@@ -38,30 +36,32 @@ export const addCart = () => {
 
         // Save the user document
         const resData = await user.save();
-        
+        console.log(resData)
         if (resData) {
           console.log('Item added to cart:', resData);
         } else {
           console.log('Error');
         }
       } else {
-        const newUser= {uId:uId,cart:{items:[newItem],total:quantity * newItem.price}}
-        const updated = await UserModel.create(newUser)
-        console.log(updated);
+        const updateCart = await UserModel.findOneAndUpdate(
+          { uId: String(uId) }, // Find the document with uId equal to the provided value
+          {
+            $set: {
+              cart: {
+                items: [newItem], // Set the 'items' array with a single newItem
+                total: quantity * newItem.price // Calculate the total based on quantity and price
+              }
+            }
+          }
+        )
+        console.log(updateCart+"========+")
         
-
+        // console.log(updated);
+      
       }
 
-      res.status(200).json({ status: 200, message: "Item added successfully" });
-    }
-    else
-    {
-      res.json({status:400, message : "select a smaller quantity"})
-    }
-    } catch (error) {
-      console.error(error);
-      res.json({ status: 500, message: "Internal server error" });
-    }
+      res.json({status:200,message:"cart updated"});
+    
   });
 
   return router;

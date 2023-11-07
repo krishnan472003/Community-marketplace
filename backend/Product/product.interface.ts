@@ -1,13 +1,13 @@
 export interface ProductData{
-    sellerUId:string
-    pId: string;
-    name: string;
-    amount: number;
-    description: string;
-    soldOut: boolean;
-    image:string;
-    quantity: number;
-    category :string;
-    subCategory : string;
+    sellerUId?:string
+    pId?: string;
+    name?: string;
+    amount?: number;
+    description?: string;
+    soldOut?: boolean;
+    image?:string;
+    quantity?: number;
+    category ?:string;
+    subCategory ?: string;
 
 }   

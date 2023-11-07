@@ -43,7 +43,10 @@ export default function Home() {
   const handleFilter = async () => {
       console.log(subCat)
       console.log(Cat)
-      setCardData(await axios.get(`http://localhost:5000/api/product/filter/?category=${Cat}&subCategory=${subCat}`));
+      if(Cat !== "" || subCat!==""){
+        setCardData(await axios.get(`http://localhost:5000/api/product/filter/?category=${Cat}&subCategory=${subCat}`));
+      }
+
       console.log(cardData)
   };
   return (
@@ -63,7 +66,7 @@ export default function Home() {
           <div className='row'>
             <div className='column'>
               <a onMouseEnter={() => setCat("properties")}  data-value="properties">Properties</a>
-                <a onMouseEnter={() => setSubCat("for-sale-houses-apartments")} onClick={handleFilter} data-value="for-sale-houses-apartments">For Sale: Houses & Apartments</a>
+              <a onMouseEnter={() => setSubCat("for-sale-houses-apartments")} onClick={handleFilter} data-value="for-sale-houses-apartments">For Sale: Houses & Apartments</a>
             </div>
           </div>
       </div>

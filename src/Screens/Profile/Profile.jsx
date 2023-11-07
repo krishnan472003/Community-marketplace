@@ -7,28 +7,27 @@ import TextField from '@mui/material/TextField';
 import { useEffect } from 'react';
 import Buttons  from '../../components/Button';
 import { Link } from 'react-router-dom';
-
+import axios from 'axios'
 function Profile() {
   const [userData, setUserData] = useState({
     fName: '',
     lName: '',
-   
-    
     contactNumber: '',
     balance: '',
     uId: '',
     address: '',
     city: '',
-    state: '',
+    state: 'Maharashtra',
     postalCode: '',
   });
-  const uId = localStorage.getItem('uId');
-  const fetchUserData = async (uId) => {
+  const uId = localStorage.getItem("uId");  
+  const fetchUserData = async () => {
+    const uId = localStorage.getItem('uId');
     try {
-      const response = await fetch(`http://localhost:5000/api/user/userProfile`); // Replace with your backend API endpoint
-      if (response.ok) {
-        const data = await response.json();
-        setUserData(data); // Set the user data in state
+      const response = await axios.get(`http://localhost:5000/api/user/userProfile?uId=${uId}`); // Replace with your backend API endpoint
+      if (response) {
+
+        setUserData(response.data.userProfile); // Set the user data in state
       } else {
         console.error('Failed to fetch user data');
       }
@@ -51,10 +50,11 @@ function Profile() {
   </Grid>
   <Grid container spacing={2} marginLeft={2} marginTop={2}>
   <Grid item xs>
+
   <TextField
          style={{width:'300px'}}
           id="standard-read-only-input"
-          label="FirstName"
+          label=""
           value={userData.fName}
           
           defaultValue="Name"
@@ -63,8 +63,8 @@ function Profile() {
           }}
           variant="outlined"
         />
-     
-      
+     {/* {userData.fName} */}
+      {/* {JSON.stringify(userData)} */}
   </Grid>
   <Grid item xs>
   <TextField
@@ -96,7 +96,7 @@ function Profile() {
        />
     </Grid>
     <Grid item xs>
-     <TextField
+     {/* <TextField
          style={{width:'300px'}}
          id="standard-read-only-input"
          label="Balance"
@@ -108,7 +108,7 @@ function Profile() {
            readOnly: true,
          }}
          variant="outlined"
-       />
+       /> */}
     </Grid>
     <Grid item xs>
     <TextField
@@ -128,7 +128,7 @@ function Profile() {
   </Grid>
    <Grid container spacing={2} marginLeft={2} marginTop={2}>
     <Grid item xs>
-  <h4>Adress Details</h4>
+  <h4>Address Details</h4>
     </Grid>
     </Grid>
   <Grid container spacing={2}  marginLeft={2} marginTop={2} marginBottom={5} >
@@ -165,19 +165,18 @@ function Profile() {
        
   </Grid>
   <Grid item xs>
-  <TextField
+  {/* <TextField
          style={{width:'300px'}}
          id="standard-read-only-input"
          label="State"
-         value={userData.state}
+         value="Maharashtra"
          name="state"
-         
-         
+                  
          InputProps={{
            readOnly: true,
          }}
          variant="outlined"
-       />
+       /> */}
   </Grid>
   
   <Grid item xs={12}>

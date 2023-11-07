@@ -8,22 +8,14 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Button } from '@mui/material';
 import useRazorpay from 'react-razorpay';
-import { useNavigate } from 'react-router-dom';
-// const Item = styled(Paper)(({ theme }) => ({
-//   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-//   ...theme.typography.body2,
-//   padding: theme.spacing(1),
-//   textAlign: 'center',
-//   color: theme.palette.text.secondary,
-// }));
 
 
 function Cart() {
   const [Razorpay] = useRazorpay();
-  const navigate = useNavigate()
   const [cart, setCart] = useState(null)
+  const uId = localStorage.getItem("uId")
+
   useEffect(() => {
-    const uId = localStorage.getItem("uId")
     axios.get("http://localhost:5000/api/user/cart/?uId=" + uId)
       .then((response) => {
         if (response.data && response.data.status === 200) {
@@ -34,6 +26,12 @@ function Cart() {
         console.error('Error fetching cart data:', error);
       });
   }, [])
+
+  const updateCart = async ()=>{
+    console.log(".......................")
+    await axios.post("http://localhost:5000/api/user/updateCart",{uId:uId,cart:cart})
+    // window.location.reload()
+  }
 
   const initPayment = (data) => {
     const uId = localStorage.getItem("uId")
@@ -77,24 +75,30 @@ function Cart() {
   };
 
   const increaseValue = (cartItem) => {
-    // Get the current value from state and increment it
-    const updatedCart = cart.items.map((item) => ({
-      ...item,
-      quantity: item.id === cartItem.id ? item.quantity + 1 : item.quantity
-    }));
+    const updatedCart = cart.items.map((item) =>
+      item.pId === cartItem.pId ? { ...item, quantity: item.quantity + 1 } : item
+    );
+  
     setCart({ ...cart, items: updatedCart });
+    updateCart();
   };
-
+  
   const decreaseValue = (cartItem) => {
-    // Get the current value from state and decrement it
-    const updatedCart = cart.items.map((item) => ({
-      ...item,
-      quantity: item.id === cartItem.id ? item.quantity - 1 : item.quantity
-    }));
+    const updatedCart = cart.items.map((item) =>
+      item.pId === cartItem.pId ? { ...item, quantity: item.quantity - 1 } : item
+    );
+
+    cart.items.filter((item)=> {return(item.pId !== cartItem.pId || (item.pId === cartItem.pId && cartItem.quantity <=0)) })
+    
+
     setCart({ ...cart, items: updatedCart });
+    updateCart()
   };
 
+  const handleRemove = (cartItem)=>{
+    cart.items.filter((item)=> {return(item.pId !== cartItem.pId || (item.pId === cartItem.pId )) })
 
+  }
   return (
     <Paper>
       <Navbar />
@@ -127,11 +131,11 @@ function Cart() {
               <>
                 <Grid container spacing={2} >
                   <Grid item xs>
-                    <img src="./imgs/sofa.webp" alt="sofa" width="300px" height="200px" />
+                    <img src={cartItem.image} alt="sofa" width="300px" height="200px" />
                   </Grid>
                   <Grid item xs direction="column">
                     <h4>{cartItem.name}</h4>
-                    <a href="#">Remove</a>
+                    {/* <a onClick={handleRemove}>Remove</a> */}
                   </Grid>
                   {/* <Grid item xs>
                     <h6>{cartItem.price}</h6>

@@ -17,6 +17,7 @@ export interface CartItem{
     sellerUId:String;
     quantity:number;
     price:number;//single item price
+    image?:string;
 
 }
 export interface Cart{

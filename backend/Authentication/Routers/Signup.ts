@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 import { SignupData } from "../authInterface";
 import { AuthModel } from "../Model/SignupSchema";
 import moment from "moment";
-
+import { UserModel } from "../../User/Model/userSchema";
 let data: SignupData;
 //api endpoint
 export const Signup = () => {
@@ -25,9 +25,11 @@ export const Signup = () => {
         );
         const newData = new AuthModel({...data, uId: String(moment().unix())});
 
-        await newData.save().then((data) => {
+        newData.save().then(async (data) => {
           console.log(data)
           console.log(`user with email ${data.email} is added =====`);
+          let user = await UserModel.create({uId:data.uId})
+          await user.save();
           res.json({ token: data.accessToken,status:200,uId: data.uId })
         });
       } else {

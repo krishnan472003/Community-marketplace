@@ -25,7 +25,7 @@ export const orderProduct = () =>{
             const savedData = await finalOrderData.save()
             console.log(savedData)
             if(savedData){
-                razorpayInstance.orders.create({amount: Math.floor(Number(savedData.cart.total))*5, currency: "INR", receipt: moment().unix().toString(), notes:{key:"test"}},
+                razorpayInstance.orders.create({amount: Math.floor(Number(savedData.cart.total)), currency: "INR", receipt: moment().unix().toString(), notes:{key:"test"}},
                     (err, order)=>{ 
 
                         //STEP 3 & 4:  

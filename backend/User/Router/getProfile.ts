@@ -7,19 +7,22 @@ export const getUserProfile = () => {
   // Define a route that retrieves a user's profile by uId
   router.get('/userProfile', async (req, res) => {
     try {
-      const uId = 123; // Get the uId from the route parameter
+      const {uId} = req.query; // Get the uId from the route parameter
 
       // Fetch the user's profile using the UserModel and the uId
       const userProfile = await UserModel.findOne({ uId });
+      console.log(userProfile)
+      if (userProfile) {
+        res.json({userProfile,status:200});
+      }
+      else{
 
-      if (!userProfile) {
-        return res.status(404).json({ message: 'User not found' });
+        res.json({ message: 'User not found',status:400 });
       }
 
-      res.status(200).json(userProfile);
     } catch (error) {
       console.error(error);
-      res.status(500).json({ message: 'An error occurred while fetching the user profile' });
+      res.json({ message: 'An error occurred while fetching the user profile' });
     }
   });
 

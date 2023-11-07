@@ -24,6 +24,7 @@ function BuyProduct() {
       axios.post("http://localhost:5000/api/user/addCart",data)
       .then((data)=>{
           if(data.status == 200){
+            console.log(data)
             navigate('/cart')
           }
           else{
@@ -49,8 +50,8 @@ function BuyProduct() {
     <h3>{product.name}</h3><br></br>
   <h4>Description:</h4>
    <p>{product.description}</p>
-   
-            <button onClick={handleAddToCart} style={{backgroundColor: '#04AA6D', color:'#fff', border:'none', padding:'10px', borderRadius:'10px'}}>Add to Cart</button>
+
+<button onClick={handleAddToCart} style={{backgroundColor: '#04AA6D', color:'#fff', border:'none', padding:'10px', borderRadius:'10px'}}>Add to Cart</button>
 
     </Grid>
 </Grid>

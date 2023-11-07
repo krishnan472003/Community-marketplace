@@ -2,13 +2,13 @@ import { Router } from "express";
 
 // import { mongodb } from "../../db";
 import { AuthModel } from "../Model/SignupSchema";
-import { verifyTokenMiddleware } from "../../middleware";
+// import { verifyTokenMiddleware } from "../../middleware";
 
 //api endpoint
 export const Logout = () => {
   const router = Router();
   
-  router.post("/logout", verifyTokenMiddleware,async (req, res) => {
+  router.post("/logout",async (req, res) => {
     const uId = req.body.uId;
     
 

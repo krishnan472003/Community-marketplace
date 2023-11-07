@@ -3,11 +3,11 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Navbar from "../../components/Navbar"
 import Footer from "../../components/Footer"
-import Buttons from "../../components/Button"
+import { Button } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import axios from 'axios'
-import { useParams } from 'react-router-dom';
-import { getStorage, ref,uploadBytes,getDownloadURL } from "firebase/storage";
+import { useNavigate, useParams } from 'react-router-dom';
+import { ref,uploadBytes,getDownloadURL } from "firebase/storage";
 import { storage } from '../../firebase';
 
 const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -24,8 +24,10 @@ function generateString(length) {
 
 
 function AddProduct() {
+  const navigate = useNavigate();
   const { category, subcategory } = useParams();
   const [selectedFile, setSelectedFile] = useState(null);
+  const [previewImage,setpreviewImage ] = useState(null);
   const [imageUrl,setImageUrl] = useState("")
   const [fileUploaded, setFileUploaded] = useState(false);
   const [productData, setProductData] = useState({
@@ -39,9 +41,10 @@ function AddProduct() {
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     setSelectedFile(file);
+    console.log(file)
     const reader = new FileReader();
     reader.onload = (e) => {
-      setImageUrl(e.target.result);
+      setpreviewImage(e.target.result);
     };
     reader.readAsDataURL(file);
   };
@@ -57,7 +60,7 @@ function AddProduct() {
   const handleUpload = () => {
     if (selectedFile) {
       const storageRef = ref(storage);
-      const imagesRef = ref(storageRef, `images/${generateString(8)}selectedFile.name`);
+      const imagesRef = ref(storageRef, `images/${generateString(8)}`+selectedFile.name);
       console.log(selectedFile)
       console.log(imagesRef)
       console.log('Uploading file:', selectedFile.name);
@@ -68,7 +71,7 @@ function AddProduct() {
 
       getDownloadURL(imagesRef)
       .then((url) => {
-        console.log(url)
+        console.log(url+"this is the image url")
         setImageUrl(url)
       })
       .catch((error) => {
@@ -84,11 +87,11 @@ function AddProduct() {
     e.preventDefault();
 
     // Create an object that contains all the input data, including the image data.
+
     const postData = {
       ...productData,
       image: imageUrl,
 
-   
   }
   try {
     console.log(postData)
@@ -97,6 +100,7 @@ function AddProduct() {
 
     if (response.status === 200) {
       console.log('Data saved successfully to MongoDB');
+      navigate("/")
       // Optionally, you can redirect the user to a success page or perform other actions here.
     } else {
       console.error('Failed to save data to MongoDB');
@@ -234,10 +238,10 @@ function AddProduct() {
           <button class="fileBtn" onClick={handleUpload}>Upload File</button>
         </div>
       ) : null}
-      {imageUrl && (
+      {selectedFile && (
         <div>
           <img
-            src={imageUrl}
+            src={previewImage}
             alt="Uploaded Preview"
             style={{ maxWidth: '100%', height: '400px', width: '400px' }} // Adjust the width as needed
           />
@@ -246,7 +250,7 @@ function AddProduct() {
     </div>
 </Grid>
 <Grid items xs marginTop={3} marginBottom={5}>
-<button type="submit" name="submit" style={{backgroundColor: '#04AA6D', color:'#fff', border:'none', padding:'10px', borderRadius:'10px'}}>Submit</button>
+<Button type="submit" name="submit" sx =  {{backgroundColor: '#04AA6D', color:'#fff', border:'none', padding:'10px', borderRadius:'10px'}}>Submit</Button>
 {/* <Buttons
 variant="contained"
 text="Submit"

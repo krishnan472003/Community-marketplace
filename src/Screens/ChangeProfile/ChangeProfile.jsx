@@ -3,22 +3,14 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Navbar from "../../components/Navbar"
 import Footer from "../../components/Footer"
-
-import Buttons from "../../components/Button"
+import Button from '@mui/material/Button';
+// import Button from "../../components/Button"
 import { Box } from '@mui/material';
 import SelectState from '../../components/SelectState';
 import TextField from '@mui/material/TextField';
 import axios from 'axios'
 
-  // const Item = styled(Paper)(({ theme }) => ({
-  //   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-  //   ...theme.typography.body2,
-  //   padding: theme.spacing(1),
-  //   textAlign: 'center',
-  //   color: theme.palette.text.secondary,
-  // }));
-  
-  
+ 
   function ChangeProfile(){
 
     const [profileData, setProfileData] = useState({
@@ -30,12 +22,10 @@ import axios from 'axios'
       postalCode: '',
       contactNumber: '',
     });
-    // const divStyle = {
-    //   color: 'grey',
-    //   paddingLeft:'20'
-      
-    // };
+
+    
     const handleInputChange = (e) => {
+
       const { name, value } = e.target;
       setProfileData({
         ...profileData,
@@ -48,6 +38,7 @@ import axios from 'axios'
       e.preventDefault();
       // Make an HTTP PUT request to update the user's profile
       // axios.put(`/api/updateProfile/${userUid}`, profileData)
+      console.log(profileData)
       axios.post(`http://localhost:5000/api/user/change`, profileData)
         .then((response) => {
           console.log('Profile updated:', response.data);
@@ -172,11 +163,11 @@ import axios from 'axios'
     </Grid>
 
     <Grid container justifyContent='center' marginBottom={2}>
-    {/* <Button variant="contained" text="Submit" type="submit">Submit</Button> */}
-    <Buttons
+    <Button variant="contained" text="Submit" type="submit">Submit</Button>
+    {/* <Buttons
         variant = "contained"
         text="Submit"
-    />
+    /> */}
     </Grid>
     </Box>
     </form>
