@@ -66,7 +66,7 @@ passport.use(
       // proxy: true,
     },
     async function (accessToken, refreshToken, profile, cb) {
-      console.log(" " + cb + " " + JSON.stringify(profile.id));
+      // console.log(" " + cb + " " + JSON.stringify(profile.id));
       const uIdSearch = await AuthModel.findOne({ uId: profile.id });
       console.log(uIdSearch)
       if (uIdSearch) {

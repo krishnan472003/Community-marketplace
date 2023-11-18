@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: .  # Path to your frontend Dockerfile
+      dockerfile: Dockerfile  # Name of your frontend Dockerfile
+    ports:
+      - "3000:3000"  # Map container port 3000 to host port 3000
+    depends_on:
+      - backend  # Ensure the backend service is available before starting frontend
+    networks:
+      - app-network  # Define a custom network for communication between services
+
+  backend:
+    build:
+      context: ./backend  # Path to your backend Dockerfile
+      dockerfile: Dockerfile  # Name of your backend Dockerfile
+    ports:
+      - "5000:5000"  # Map container port 5000 to host port 5000
+    networks:
+      - app-network  # Use the same custom network for communication between services
+
+networks:
+  app-network:  # Define the custom network
+    driver: bridge

@@ -20,10 +20,10 @@ export const orderProduct = () =>{
         const cartItems = await UserModel.findOne({uId:data.uId})
         if(cartItems && cartItems.cart){
             const cart =  cartItems.cart;
-            let orderData = {cart:cart,tmstp:moment().unix(),uid:data.uId}
+            let orderData = {cart:cart,tmstp:moment().unix(),uId:data.uId}
             const finalOrderData = new OrderModel(orderData)
             const savedData = await finalOrderData.save()
-            console.log(savedData)
+            console.log(JSON.stringify(savedData) +"===++++++++++++++++++====")
             if(savedData){
                 razorpayInstance.orders.create({amount: Math.floor(Number(savedData.cart.total)), currency: "INR", receipt: moment().unix().toString(), notes:{key:"test"}},
                     (err, order)=>{ 

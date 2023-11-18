@@ -37,6 +37,7 @@ function AddProduct() {
     description: '',
     category: category,
     subCategory: subcategory,
+    uId: localStorage.getItem("uId")
   });
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -57,19 +58,20 @@ function AddProduct() {
     });
   };
 
-  const handleUpload = () => {
+  const handleUpload = async (e) => {
+    e.preventDefault(); //
     if (selectedFile) {
       const storageRef = ref(storage);
       const imagesRef = ref(storageRef, `images/${generateString(8)}`+selectedFile.name);
       console.log(selectedFile)
       console.log(imagesRef)
       console.log('Uploading file:', selectedFile.name);
-      uploadBytes(imagesRef, selectedFile).then((snapshot) => {
+      await uploadBytes(imagesRef, selectedFile).then((snapshot) => {
         console.log('Uploaded a blob or file!');
         console.log(snapshot)
       });
 
-      getDownloadURL(imagesRef)
+      await  getDownloadURL(imagesRef)
       .then((url) => {
         console.log(url+"this is the image url")
         setImageUrl(url)
@@ -77,6 +79,7 @@ function AddProduct() {
       .catch((error) => {
         console.error('Error getting download URL: ', error);
       });
+      console.log("done")
       setFileUploaded(true);
     } else {
       alert('Please select a file before uploading.');
@@ -235,7 +238,7 @@ function AddProduct() {
       {!fileUploaded ? (
         <div>
           <input type="file" accept=".jpg, .jpeg, .png" onChange={handleFileChange}/>
-          <button class="fileBtn" onClick={handleUpload}>Upload File</button>
+          <button class="fileBtn" onClick={(e)=>{handleUpload(e)}}>Upload File</button>
         </div>
       ) : null}
       {selectedFile && (

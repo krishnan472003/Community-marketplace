@@ -3,7 +3,6 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -14,22 +13,34 @@ import Navbar from "../../components/Navbar"
 import Footer from "../../components/Footer"
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
-
-
-
-// TODO remove, this demo shouldn't need to reset the theme.
+import { useState } from 'react';
 
 const defaultTheme = createTheme();
 
 export default function Signup() {
   const navigate = useNavigate()
+  const [location,setLocation] = useState(null);
+  navigator.geolocation.getCurrentPosition(
+    (position) => {
+      // On success, update the state with the user's location
+      setLocation({
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude,
+      });
+    },
+    (error) => {
+      // On error, log the error message
+      console.error('Error getting user location:', error.message);
+    }
+  );
   const handleSubmit = async (event) => {
     event.preventDefault();
     let data= new FormData(event.currentTarget);
     data = {
       email: data.get('email'),
       password: data.get('password'),
+      latitude: location.latitude,
+      longitude:location.longitude,
     }
     let fetchedData = await axios.post("http://localhost:5000/api/auth/signup",data)
     fetchedData = fetchedData.data

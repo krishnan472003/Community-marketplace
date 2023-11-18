@@ -18,7 +18,6 @@ export const verifyPayment =()=>{
             const user = await UserModel.findOneAndUpdate(
                     { uId: uId }, 
                     { $set: { cart: { items: [], total: 0 } } })
-        
            res.redirect("http://localhost:3000/finance")
         } catch (error) {
             res.status(200).json({ message: "Internal Server Error!" });

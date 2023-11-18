@@ -7,7 +7,6 @@ export const searchProduct = () => {
         const { query } = req.query; // Use req.query to access query parameters
         console.log(query+"  =")
         const productDetails = await ProductModel.find({ name:  { $regex: query, $options: 'i' } })
-        console.log(JSON.stringify(productDetails))
 
         if (productDetails) {
             res.json({ productDetails })

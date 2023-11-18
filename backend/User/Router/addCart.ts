@@ -26,12 +26,13 @@ export const addCart = () => {
         sellerUId : product.sellerUId,
         image :product.image,
       };
+      
       console.log(newItem)
       // console.log(user+"===================================================================")
       if (user.cart ) {
         user.cart.items.push(newItem);
 
-        // Update the total in the cart (assuming total needs to be recalculated)
+        
         user.cart.total += newItem.quantity * newItem.price;
 
         // Save the user document

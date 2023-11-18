@@ -8,7 +8,6 @@ import { UserModel } from "../../User/Model/userSchema";
 let data: SignupData;
 //api endpoint
 export const Signup = () => {
-
   const router = Router();
   console.log("In Signup");
   router.post("/signup", async (req: Request, res: Response) => {
@@ -23,17 +22,24 @@ export const Signup = () => {
           JSON.stringify(data),
           process.env.TOKEN_SECRET
         );
-        const newData = new AuthModel({...data, uId: String(moment().unix())});
+        const newData = new AuthModel({
+          ...data,
+          uId: String(moment().unix()),
+        });
 
         newData.save().then(async (data) => {
-          console.log(data)
+          console.log(data);
           console.log(`user with email ${data.email} is added =====`);
-          let user = await UserModel.create({uId:data.uId})
+          let user = await UserModel.create({
+            uId: data.uId,
+            longitude: req.body.longitude,
+            latitude: req.body.latitude,
+          });
           await user.save();
-          res.json({ token: data.accessToken,status:200,uId: data.uId })
+          res.json({ token: data.accessToken, status: 200, uId: data.uId });
         });
       } else {
-        res.status(200).json({ message: "account exists",status:  400 });
+        res.status(200).json({ message: "account exists", status: 400 });
       }
     });
   });

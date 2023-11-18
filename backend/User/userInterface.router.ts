@@ -9,6 +9,8 @@ export interface UserData{
     contactNumber?:number;
     balance?:number;
     cart?: Cart;
+    latitude?:number;
+    longitude?:number;
 }
 
 export interface CartItem{
@@ -18,7 +20,7 @@ export interface CartItem{
     quantity:number;
     price:number;//single item price
     image?:string;
-
+ 
 }
 export interface Cart{
     items:CartItem[];

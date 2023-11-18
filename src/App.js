@@ -9,6 +9,7 @@ import AddProduct from './Screens/AddProduct/AddProduct';
 import BuyProduct from './Screens/BuyProduct/BuyProduct';
 import ChangeProfile from './Screens/ChangeProfile/ChangeProfile';
 import Fianance from './Screens/Fianance/Fianance';
+import Map from './components/Map'
 import Category from './Screens/Category/Category';
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
           <Route path="finance" element={<Fianance />} />
           <Route path="changeprofile" element={<ChangeProfile />} />
           <Route path="/category" element={<Category/>} />
+          <Route path="/map" element={<Map/>} />
           </Routes>
       </Router>
     </div>
